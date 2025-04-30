@@ -1,4 +1,17 @@
 package com.svalero.hureanensamble.view;
 
-public class HomepageView {
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.svalero.hureanensamble.R;
+
+public class HomepageView extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_homepage);
+    }
 }
