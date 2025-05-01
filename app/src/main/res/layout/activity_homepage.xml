@@ -6,11 +6,49 @@
     android:layout_height="match_parent"
     tools:context="com.svalero.hureanensamble.view.HomepageView">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:ignore="MissingConstraints" />
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="262dp"
+        android:layout_height="270dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnEventosHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/eventos" />
+
+        <Button
+            android:id="@+id/btnServicesHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/servicios" />
+
+        <Button
+            android:id="@+id/btnPlaylistHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/playlist" />
+
+        <Button
+            android:id="@+id/btnCancionesHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/canciones" />
+
+        <Button
+            android:id="@+id/btnUsersHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/usuarios"
+            android:visibility="gone"/>
+    </com.google.android.material.chip.ChipGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

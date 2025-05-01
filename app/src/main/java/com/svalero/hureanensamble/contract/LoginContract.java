@@ -25,7 +25,6 @@ public interface LoginContract {
 
     interface Presenter {
         void login(User user);
-
         void login(Login login);
     }
 

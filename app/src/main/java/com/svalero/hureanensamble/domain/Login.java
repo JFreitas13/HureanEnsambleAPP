@@ -1,6 +1,7 @@
 package com.svalero.hureanensamble.domain;
 
 public class Login {
+
     private String email;
     private String password;
 

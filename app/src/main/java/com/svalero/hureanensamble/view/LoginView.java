@@ -28,10 +28,10 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
 
     //boton login
     public void loginButton(View view) {
-        EditText etUsername = findViewById(R.id.usernameEditText);
+        EditText etEmail = findViewById(R.id.emailEditText);
         EditText etPassword = findViewById(R.id.passwordEditText);
 
-        String email = etUsername.getText().toString();
+        String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
         User user = new User(email, password);
@@ -40,13 +40,13 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
 
     @Override
     public void showError(String errorMessage) {
-        Snackbar.make(((EditText) findViewById(R.id.usernameEditText)), errorMessage,
+        Snackbar.make(((EditText) findViewById(R.id.emailEditText)), errorMessage,
                 BaseTransientBottomBar.LENGTH_LONG).show();
     }
 
     @Override
     public void showMessage(String message) {
-        Snackbar.make(((EditText) findViewById(R.id.usernameEditText)), message,
+        Snackbar.make(((EditText) findViewById(R.id.emailEditText)), message,
                 BaseTransientBottomBar.LENGTH_LONG).show();
     }
 

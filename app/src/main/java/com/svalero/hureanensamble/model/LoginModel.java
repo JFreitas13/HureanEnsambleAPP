@@ -30,13 +30,13 @@ public class LoginModel implements LoginContract.Model {
                     listener.onLoginSuccess(response.body());
                 } else if (response.code() == 404) {
                     Log.e("LoginModel", "Login fallido: Usuario o contraseña incorrectos (404)");
-                // Login incorrecto: usuario no encontrado
-                listener.onLoginError("Usuario o contraseña incorrectos.");
-            } else {
-                // Otro error (por ejemplo, error 500)
+                    // Login incorrecto: usuario no encontrado
+                    listener.onLoginError("Usuario o contraseña incorrectos.");
+                } else {
+                    // Otro error (por ejemplo, error 500)
                     Log.e("LoginModel", "Error en login: Código HTTP " + response.code());
-                listener.onLoginError("Error de servidor: " + response.code());
-            }
+                    listener.onLoginError("Error de servidor: " + response.code());
+                }
             }
 
             @Override
@@ -51,6 +51,5 @@ public class LoginModel implements LoginContract.Model {
     public void login(User user, OnLoginListener listener) {
 
     }
-
 }
 

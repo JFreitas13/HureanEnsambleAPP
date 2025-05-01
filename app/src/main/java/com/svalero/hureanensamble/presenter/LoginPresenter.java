@@ -2,6 +2,7 @@ package com.svalero.hureanensamble.presenter;
 
 import android.util.Log;
 
+import com.svalero.hureanensamble.Util.UserSession;
 import com.svalero.hureanensamble.contract.LoginContract;
 import com.svalero.hureanensamble.domain.Login;
 import com.svalero.hureanensamble.domain.User;
@@ -36,6 +37,9 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.Mo
 
     @Override
     public void onLoginSuccess(User user) {
+        UserSession session = new UserSession(view); //guardo datos Sharedpreferences
+        session.saveUser(user.getName(), user.getRol());
+
         view.showMessage("Bienvenido " + user.getName());
         view.navigateToHome();  // Navegar a la pantalla principal después del login
     }

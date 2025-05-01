@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HureanEnsamble</string>
-    <string name="servicios">Servicios</string>
+    <string name="servicios">Serviços</string>
     <string name="email">Usuario</string>
     <string name="contrasena">Contraseña</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
