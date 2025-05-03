@@ -1,10 +1,14 @@
 package com.svalero.hureanensamble.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.svalero.hureanensamble.R;
@@ -38,7 +42,6 @@ public class HomepageView extends AppCompatActivity {
         } else {
             userHome.setVisibility(View.GONE);
         }
-
         serviceHome.setVisibility(View.VISIBLE);
         playlistHome.setVisibility(View.VISIBLE);
         songHome.setVisibility(View.VISIBLE);
@@ -58,5 +61,44 @@ public class HomepageView extends AppCompatActivity {
         }
 
         btnUserCommon.setVisibility(View.VISIBLE); // visible para todos*/
+    }
+
+    //crear el menu actionbar
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_homepage, menu);
+        return true;
+    }
+
+    //eleccion en el actionBar
+   /* @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.sobre_nosotros) {
+            Intent intent = new Intent(this, AddBookView.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.logout) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
+    }*/
+
+    //logout
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.logout) {
+            //cierro session
+            UserSession session = new UserSession(this);
+            session.clear();
+
+            //Regirigo a la pantalla de Login
+            Intent intent = new Intent(this, LoginView.class);
+            // Establece flags para limpiar el historial de actividades y empezar una nueva tarea
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 }

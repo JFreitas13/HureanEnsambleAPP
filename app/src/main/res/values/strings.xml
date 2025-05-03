@@ -8,4 +8,6 @@
     <string name="playlist">Playlist</string>
     <string name="canciones">Canciones</string>
     <string name="usuarios">Usuarios</string>
+    <string name="sobre_nosotros">Sobre nosotros</string>
+    <string name="logout">Logout</string>
 </resources>
