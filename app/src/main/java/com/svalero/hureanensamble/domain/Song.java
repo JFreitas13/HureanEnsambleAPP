@@ -1,7 +1,5 @@
 package com.svalero.hureanensamble.domain;
 
-import java.net.URL;
-
 public class Song {
     private long id;
     private String name;
@@ -36,4 +34,5 @@ public class Song {
     public void setUrl(String url) {
         this.url = url;
     }
+
 }

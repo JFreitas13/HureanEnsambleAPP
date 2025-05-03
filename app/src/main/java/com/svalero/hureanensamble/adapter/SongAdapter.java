@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.svalero.hureanensamble.R;
 import com.svalero.hureanensamble.domain.Song;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Indicamos a Android lo que debe pintar en el ReclyclerView. Usamos el patron Holder
@@ -23,17 +24,26 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> {
 
     private Context context; // Activity en la que estamos
     private List<Song> songList;
+    private List<Song> filteredSongList;
 
 
     //1. constructor que creamos para pasarle los datos que queremos que pinte. El contexto y la lista
     public SongAdapter(Context context, List<Song> dataList){
         this.context=context;
-        this.songList = dataList; //lista de canciones
+        //this.filteredSongList = dataList; //lista de canciones
+        this.filteredSongList = new ArrayList<>(dataList);
+    }
+
+    public void updateData(List<Song> newSongList) {
+        this.filteredSongList.clear();
+        this.filteredSongList.addAll(newSongList);
+        notifyDataSetChanged(); // Refresca la vista
     }
 
     public Context getContext() {
         return context;
     }
+
     //2. creamos la estructura de cada layout. Vista detalle de cada cancion
     // Metodo con el que Android va a inflar, va a crear cada estructura del layout donde irán los datos de cada cancion. Vista detalle de cada cancion
     @Override
@@ -47,10 +57,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> {
     @Override
     public void onBindViewHolder(SongHolder holder, int position) {
 
-        Song song = songList.get(position);
+        Song song = filteredSongList.get(position);
 
-        holder.songName.setText(songList.get(position).getName());
-        holder.songUrl.setText(String.valueOf(songList.get(position).getUrl()));
+        holder.songName.setText(filteredSongList.get(position).getName());
+        holder.songUrl.setText(String.valueOf(filteredSongList.get(position).getUrl()));
 
         String videoId = extractYoutubeId(song.getUrl());
         if (videoId != null) {
@@ -66,17 +76,13 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> {
             });
         }
 
-        // Listener para abrir el enlace
-        /*holder.songUrl.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(song.getUrl()));
-            context.startActivity(intent);
-        });*/
     }
+
 
     //4.metodo para contar el numero de elementos
     @Override
     public int getItemCount() {
-        return songList.size();
+        return filteredSongList.size();
     }
 
     //extraer id del video de youtube
