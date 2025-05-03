@@ -1,10 +1,14 @@
 package com.svalero.hureanensamble.api;
 
 import com.svalero.hureanensamble.domain.Login;
+import com.svalero.hureanensamble.domain.Song;
 import com.svalero.hureanensamble.domain.User;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -20,5 +24,8 @@ public interface HureanEnsambleApiInterface {
      */
     @POST("/login")
     Call<User> login(@Body Login login);
+
+    @GET("/songs")
+    Call<List<Song>> getSongs();
 
 }

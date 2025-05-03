@@ -2,13 +2,13 @@ package com.svalero.hureanensamble.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.svalero.hureanensamble.R;
@@ -28,12 +28,17 @@ public class HomepageView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        // Cambiar color del ActionBar programáticamente
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.hurean_dark)));
+        }
+
         UserSession session = new UserSession(this);
         String rol = session.getUserRol();
 
         serviceHome = findViewById(R.id.btnServicesHome);
         playlistHome = findViewById(R.id.btnPlaylistHome);
-        songHome = findViewById(R.id.btnCancionesHome);
+        songHome = findViewById(R.id.btnSongHome);
         eventHome = findViewById(R.id.btnEventosHome);
         userHome = findViewById(R.id.btnUsersHome);
 
@@ -47,6 +52,11 @@ public class HomepageView extends AppCompatActivity {
         songHome.setVisibility(View.VISIBLE);
         eventHome.setVisibility(View.VISIBLE);
 
+        songHome = findViewById(R.id.btnSongHome);
+        songHome.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SongListView.class);
+            startActivity(intent);
+        });
 
         // Obtener el rol desde el intent
       /*  String userRol = getIntent().getStringExtra("userRol");
