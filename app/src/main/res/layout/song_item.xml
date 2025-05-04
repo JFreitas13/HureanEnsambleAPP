@@ -29,10 +29,11 @@
         android:id="@+id/song_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="14sp"
         android:clickable="true"
-        android:focusable="true"/>
+        android:focusable="true"
+        android:minHeight="48dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/song_list_image"
@@ -42,38 +43,36 @@
         android:layout_marginTop="8dp" />
 
 
-    <!-- <LinearLayout
-         android:id="@+id/linearLayout3"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="209dp"
+        android:orientation="horizontal">
 
-         <Button
-             android:id="@+id/modify_book_button"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             style="@style/Widget.Material3.Button.Icon"
-             android:layout_weight="1"
-             android:text="@string/modify_button"
-             android:textSize="15sp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/modify_song_button"
+            style="@style/HureanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/modify_song_button"
+            android:textColor="#795548" />
 
-         <Button
-             android:id="@+id/delete_book_button"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             style="@style/Widget.Material3.Button.Icon"
-             android:layout_weight="1"
-             android:text="@string/delete_button"
-             android:textSize="15sp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_book_button"
+            style="@style/HureanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_song_button"
+            android:textColor="#795548" />
 
-         <Button
+        <!-- <Button
              android:id="@+id/add_fav_book_button"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              style="@style/Widget.Material3.Button.Icon"
              android:layout_weight="1"
              android:text="@string/add_fav_book_button"
-             android:textSize="15sp"/>
-     </LinearLayout> -->
+             android:textSize="15sp"/> -->
+    </LinearLayout>
 
 </LinearLayout>

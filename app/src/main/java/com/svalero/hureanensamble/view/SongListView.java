@@ -66,6 +66,8 @@ public class SongListView extends AppCompatActivity implements SongListContract.
 
         adapter = new SongAdapter(this, songList);
         recyclerView.setAdapter(adapter);
+
+
     }
 
     @Override
@@ -100,6 +102,7 @@ public class SongListView extends AppCompatActivity implements SongListContract.
     }
      */
 
+    //filtrar canciones
     private void filterSongs(String query) {
         List<Song> filtered = new ArrayList<>();
         for (Song song : songList) {
@@ -119,7 +122,17 @@ public class SongListView extends AppCompatActivity implements SongListContract.
 
     //crear el menu actionbar
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_homepage, menu);
+        getMenuInflater().inflate(R.menu.actionbar_songs_list, menu);
+
+        // Obtener el rol desde la sesión
+        UserSession session = new UserSession(this);
+        String rol = session.getUserRol();
+
+        //hacer que el boton de añadir canciones solo sea visible si el rol del usuario es admin
+        if (!"admin".equalsIgnoreCase(rol)) {
+            menu.findItem(R.id.add_song).setVisible(false);
+        }
+
         return true;
     }
 
@@ -128,13 +141,15 @@ public class SongListView extends AppCompatActivity implements SongListContract.
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.logout) {
             //cierro session
-            UserSession session = new UserSession(this);
-            session.clear();
 
             //Regirigo a la pantalla de Login
             Intent intent = new Intent(this, LoginView.class);
             // Establece flags para limpiar el historial de actividades y empezar una nueva tarea
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.add_song) {
+            Intent intent = new Intent(this, AddSongView.class);
             startActivity(intent);
             return true;
         }

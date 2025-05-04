@@ -22,16 +22,16 @@ public class HomepageView extends AppCompatActivity {
     Button eventHome;
     Button userHome;
 
-    @SuppressLint("MissingInflatedId")
+    //@SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
         // Cambiar color del ActionBar programáticamente
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.hurean_dark)));
-        }
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.hurean_dark)));
+//        }
 
         UserSession session = new UserSession(this);
         String rol = session.getUserRol();

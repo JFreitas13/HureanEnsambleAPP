@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/add_song"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/addsong"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/sobre_nosotros"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/sobre_nosotros"

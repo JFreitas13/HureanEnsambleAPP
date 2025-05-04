@@ -10,4 +10,11 @@
     <string name="usuarios">Usuarios</string>
     <string name="sobre_nosotros">Sobre nosotros</string>
     <string name="logout">Logout</string>
+    <string name="addsong">addSong</string>
+    <string name="nombre_de_la_cancion">Nombre de la canción</string>
+    <string name="link">Link</string>
+    <string name="anadir">Añadir</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="modify_song_button">Modificar</string>
+    <string name="delete_song_button">Eliminar</string>
 </resources>
