@@ -20,7 +20,7 @@
     <!--        android:textSize="16sp" />-->
 
     <TextView
-        android:id="@+id/song_name"
+        android:id="@+id/product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/hurean_dark"
@@ -28,7 +28,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/song_url"
+        android:id="@+id/product_description"
         android:layout_width="match_parent"
         android:layout_height="29dp"
         android:clickable="true"
@@ -37,13 +37,12 @@
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="14sp" />
 
-    <ImageView
-        android:id="@+id/song_list_image"
+    <EditText
+        android:id="@+id/product_price"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop" />
-
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -52,7 +51,7 @@
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/modify_song_button"
+            android:id="@+id/modify_product_button"
             style="@style/HureanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,7 +62,7 @@
             app:backgroundTint="@color/hurean_dark" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/delete_song_button"
+            android:id="@+id/delete_product_button"
             style="@style/HureanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

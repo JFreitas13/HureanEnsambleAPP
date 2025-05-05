@@ -1,6 +1,7 @@
 package com.svalero.hureanensamble.api;
 
 import com.svalero.hureanensamble.domain.Login;
+import com.svalero.hureanensamble.domain.Product;
 import com.svalero.hureanensamble.domain.Song;
 import com.svalero.hureanensamble.domain.User;
 
@@ -36,4 +37,17 @@ public interface HureanEnsambleApiInterface {
 
     @PUT("/songs/{id}")
     Call<Song> modifySong(@Path("id") long id, @Body Song song);
+
+    //product
+    @GET("/products")
+    Call<List<Product>> getProducts();
+
+    @POST("/products")
+    Call<Product> addProduct(@Body Product product);
+
+    @DELETE("/products/{id}")
+    Call<Void> deleteProduct(@Path("id") long id);
+
+    @PUT("/products/{id}")
+    Call<Product> modifyProduct(@Path("id") long id, @Body Product product);
 }

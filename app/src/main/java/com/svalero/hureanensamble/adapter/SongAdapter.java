@@ -18,6 +18,7 @@ import com.svalero.hureanensamble.domain.Song;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.ToDoubleBiFunction;
 
 //Indicamos a Android lo que debe pintar en el ReclyclerView. Usamos el patron Holder
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> {
@@ -25,6 +26,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> {
     private Context context; // Activity en la que estamos
     private List<Song> songList;
     private List<Song> filteredSongList;
+    //TODO: BOTON MODIFICAR Y BOTON ELIMINAR
 
 
     //1. constructor que creamos para pasarle los datos que queremos que pinte. El contexto y la lista

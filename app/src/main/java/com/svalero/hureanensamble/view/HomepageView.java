@@ -16,11 +16,12 @@ import com.svalero.hureanensamble.Util.UserSession;
 
 public class HomepageView extends AppCompatActivity {
 
-    Button serviceHome;
+    Button Home;
     Button playlistHome;
     Button songHome;
     Button eventHome;
     Button userHome;
+    Button productHome;
 
     //@SuppressLint("MissingInflatedId")
     @Override
@@ -36,7 +37,7 @@ public class HomepageView extends AppCompatActivity {
         UserSession session = new UserSession(this);
         String rol = session.getUserRol();
 
-        serviceHome = findViewById(R.id.btnServicesHome);
+        productHome = findViewById(R.id.btnServicesHome);
         playlistHome = findViewById(R.id.btnPlaylistHome);
         songHome = findViewById(R.id.btnSongHome);
         eventHome = findViewById(R.id.btnEventosHome);
@@ -47,7 +48,7 @@ public class HomepageView extends AppCompatActivity {
         } else {
             userHome.setVisibility(View.GONE);
         }
-        serviceHome.setVisibility(View.VISIBLE);
+        productHome.setVisibility(View.VISIBLE);
         playlistHome.setVisibility(View.VISIBLE);
         songHome.setVisibility(View.VISIBLE);
         eventHome.setVisibility(View.VISIBLE);
@@ -55,6 +56,12 @@ public class HomepageView extends AppCompatActivity {
         songHome = findViewById(R.id.btnSongHome);
         songHome.setOnClickListener(view -> {
             Intent intent = new Intent(this, SongListView.class);
+            startActivity(intent);
+        });
+
+        productHome = findViewById(R.id.btnServicesHome);
+        productHome.setOnClickListener(view -> {
+            Intent intent = new Intent(this, ProductListView.class);
             startActivity(intent);
         });
 
