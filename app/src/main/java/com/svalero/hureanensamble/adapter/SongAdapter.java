@@ -18,7 +18,6 @@ import com.svalero.hureanensamble.domain.Song;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.ToDoubleBiFunction;
 
 //Indicamos a Android lo que debe pintar en el ReclyclerView. Usamos el patron Holder
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> {

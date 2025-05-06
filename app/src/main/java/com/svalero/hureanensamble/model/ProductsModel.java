@@ -14,11 +14,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductListModel implements ProductListContract.Model {
+public class ProductsModel implements ProductListContract.Model {
 
     private Context context;
 
-    public ProductListModel(Context context) {
+    public ProductsModel(Context context) {
         this.context = context;
     }
 

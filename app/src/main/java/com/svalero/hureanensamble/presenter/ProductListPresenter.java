@@ -2,19 +2,19 @@ package com.svalero.hureanensamble.presenter;
 
 import com.svalero.hureanensamble.contract.ProductListContract;
 import com.svalero.hureanensamble.domain.Product;
-import com.svalero.hureanensamble.model.ProductListModel;
+import com.svalero.hureanensamble.model.ProductsModel;
 import com.svalero.hureanensamble.view.ProductListView;
 
 import java.util.List;
 
 public class ProductListPresenter implements ProductListContract.Presenter, ProductListContract.Model.OnLoadProductListener {
 
-    private ProductListModel model;
+    private ProductsModel model;
     private ProductListView view;
 
     public ProductListPresenter(ProductListView view) {
         this.view = view;
-        this.model = new ProductListModel(view.getApplicationContext());
+        this.model = new ProductsModel(view.getApplicationContext());
     }
 
     @Override

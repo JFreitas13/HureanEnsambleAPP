@@ -17,4 +17,5 @@
     <string name="cancelar">Cancelar</string>
     <string name="modify_song_button">Modificar</string>
     <string name="delete_song_button">Eliminar</string>
+    <string name="ver_playlist">Ver Playlist</string>
 </resources>

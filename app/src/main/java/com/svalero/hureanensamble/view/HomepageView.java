@@ -65,6 +65,12 @@ public class HomepageView extends AppCompatActivity {
             startActivity(intent);
         });
 
+        playlistHome = findViewById(R.id.btnPlaylistHome);
+        playlistHome.setOnClickListener(view -> {
+            Intent intent = new Intent(this, PlaylistListView.class);
+            startActivity(intent);
+        });
+
         // Obtener el rol desde el intent
       /*  String userRol = getIntent().getStringExtra("userRol");
 
