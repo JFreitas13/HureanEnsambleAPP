@@ -10,7 +10,7 @@ public class AddSongPresenter implements AddSongContract.Presenter, AddSongContr
     private AddSongModel model;
     private AddSongView view;
 
-    public AddSongPresenter(AddSongView song) {
+    public AddSongPresenter(AddSongView view) {
         this.model = new AddSongModel();
         this.view = view;
     }

@@ -18,4 +18,6 @@
     <string name="modify_song_button">Modificar</string>
     <string name="delete_song_button">Eliminar</string>
     <string name="ver_playlist">Ver Playlist</string>
+    <string name="are_you_sure_delete_song_message">¿Estás seguro que quieres eliminar la canción?</string>
+    <string name="delete_song_title">Eliminar Canción</string>
 </resources>

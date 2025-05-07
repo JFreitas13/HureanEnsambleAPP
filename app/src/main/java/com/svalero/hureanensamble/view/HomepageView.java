@@ -29,13 +29,10 @@ public class HomepageView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        // Cambiar color del ActionBar programáticamente
-//        if (getSupportActionBar() != null) {
-//            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.hurean_dark)));
-//        }
-
+        //Sesion de usuario para identificar el ROl
         UserSession session = new UserSession(this);
         String rol = session.getUserRol();
+
 
         productHome = findViewById(R.id.btnServicesHome);
         playlistHome = findViewById(R.id.btnPlaylistHome);
@@ -45,13 +42,15 @@ public class HomepageView extends AppCompatActivity {
 
         if ("admin".equalsIgnoreCase(rol)) {
             userHome.setVisibility(View.VISIBLE);
+            eventHome.setVisibility(View.VISIBLE);
         } else {
             userHome.setVisibility(View.GONE);
+            eventHome.setVisibility(View.GONE);
         }
         productHome.setVisibility(View.VISIBLE);
         playlistHome.setVisibility(View.VISIBLE);
         songHome.setVisibility(View.VISIBLE);
-        eventHome.setVisibility(View.VISIBLE);
+
 
         songHome = findViewById(R.id.btnSongHome);
         songHome.setOnClickListener(view -> {

@@ -42,7 +42,8 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEventosHome"
                 style="@style/HureanButton"
-                android:text="@string/eventos" />
+                android:text="@string/eventos"
+                android:visibility="gone"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnServicesHome"
