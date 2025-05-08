@@ -16,7 +16,7 @@ import com.svalero.hureanensamble.Util.UserSession;
 
 public class HomepageView extends AppCompatActivity {
 
-    Button Home;
+    Button home;
     Button playlistHome;
     Button songHome;
     Button eventHome;
@@ -67,6 +67,12 @@ public class HomepageView extends AppCompatActivity {
         playlistHome = findViewById(R.id.btnPlaylistHome);
         playlistHome.setOnClickListener(view -> {
             Intent intent = new Intent(this, PlaylistListView.class);
+            startActivity(intent);
+        });
+
+        userHome = findViewById(R.id.btnUsersHome);
+        userHome.setOnClickListener(view -> {
+            Intent intent = new Intent(this, UserListView.class);
             startActivity(intent);
         });
 

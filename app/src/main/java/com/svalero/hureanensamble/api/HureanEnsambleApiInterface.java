@@ -53,7 +53,6 @@ public interface HureanEnsambleApiInterface {
     Call<Product> modifyProduct(@Path("id") long id, @Body Product product);
 
     //playlist
-
     @GET("/playlists")
     Call<List<Playlist>> getPlaylists();
 
@@ -74,6 +73,20 @@ public interface HureanEnsambleApiInterface {
             @Path("playlistId") long playlistId,
             @Path("songId") long songId
     );
+
+    //user
+    @GET("/users")
+    Call<List<User>> getUsers();
+
+    @POST("/users")
+    Call<User> addUSer(@Body User user);
+
+    @DELETE("/users/{id}")
+    Call<Void> deleteUSer(@Path("id") long id);
+
+    @PUT("/users/{id}")
+    Call<User> modifyUser(@Path("id") long id, @Body User user);
+
 
 
 }
