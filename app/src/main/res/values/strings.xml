@@ -32,4 +32,6 @@
         <item>admin</item>
         <item>user</item>
     </string-array>
+    <string name="are_you_sure_delete_user_message">"¿Estás seguro que quieres eliminar el usuario?"</string>
+    <string name="delete_user_title">Eliminar Usuario</string>
 </resources>

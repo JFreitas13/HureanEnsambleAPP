@@ -7,7 +7,7 @@ import com.svalero.hureanensamble.model.DeleteSongModel;
 public class DeleteSongPresenter implements DeleteSongContract.Presenter, DeleteSongContract.Model.OnDeleteSongListener {
 
     private DeleteSongModel model;
-    private SongAdapter view;
+    private SongAdapter view; //La view es el adapter porque realizamos el borrado desde un boton
 
     public DeleteSongPresenter(SongAdapter view) {
         this.model = new DeleteSongModel();

@@ -145,7 +145,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
 
             //pulsando estos botones llamamos al metodo correspondiente
             modifySongButton.setOnClickListener(v -> modifySong(getAdapterPosition()));
-            deleteSongButton.setOnClickListener(v -> deleteBook(getAdapterPosition()));
+            deleteSongButton.setOnClickListener(v -> deleteSong(getAdapterPosition()));
         }
 
         //metodo boton modificar
@@ -157,25 +157,25 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             context.startActivity(intent);
         }
 
-        private void deleteBook(int position) {
-                //Dialogo para confirmar que se quiere eliminar
-                AlertDialog.Builder builder = new AlertDialog.Builder(context); //le pasamos el contexto donde estamos
-                builder.setMessage(R.string.are_you_sure_delete_song_message)
-                        .setTitle(R.string.delete_song_title)
-                        .setPositiveButton("Si", (dialog, id) -> { //añadir boton de si
-                            Song song = filteredSongList.get(position);   // Obtenemos la canción a eliminar
-                          //  setPendingDeletePosition(position);           // Guardamos la posición para usarla tras la respuesta de la API
-                            presenter.deleteSong(song.getId());           // Llamamos al presenter para que inicie el borrado en la API
+        private void deleteSong(int position) {
+            //Dialogo para confirmar que se quiere eliminar
+            AlertDialog.Builder builder = new AlertDialog.Builder(context); //le pasamos el contexto donde estamos
+            builder.setMessage(R.string.are_you_sure_delete_song_message)
+                     .setTitle(R.string.delete_song_title)
+                     .setPositiveButton("Si", (dialog, id) -> { //añadir boton de si
+                         Song song = filteredSongList.get(position);   // Obtenemos la canción a eliminar
+                       //  setPendingDeletePosition(position);           // Guardamos la posición para usarla tras la respuesta de la API
+                         presenter.deleteSong(song.getId());           // Llamamos al presenter para que inicie el borrado en la API
 
-                            filteredSongList.remove(position);
-                            notifyItemRemoved(position);
-                        })
-                        .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //boton del no
-                AlertDialog dialog = builder.create();
-                dialog.show(); //sin esto no se muestra el dialogo
-            };
-
-        }
+                         filteredSongList.remove(position);
+                         notifyItemRemoved(position);
+                     })
+                     .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //boton del no
+            AlertDialog dialog = builder.create();
+            dialog.show(); //sin esto no se muestra el dialogo
+        };
 
     }
+
+}
 
