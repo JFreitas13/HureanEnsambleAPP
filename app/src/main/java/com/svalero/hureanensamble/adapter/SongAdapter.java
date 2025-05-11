@@ -130,7 +130,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
         public View parentView; //vista padre: recyclerView
 
         //constructor del holder
-
         public SongHolder(View view) {
             super(view);
             parentView = view; //guardamos el componente padre
