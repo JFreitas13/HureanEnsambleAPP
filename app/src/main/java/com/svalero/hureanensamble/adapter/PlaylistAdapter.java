@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,7 +38,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
 
     //3.metodo para hacer que cada valor de la lista corresponda a los valores y pintarlos en cad elemento del layout
     @Override
-    public void onBindViewHolder(PlaylistAdapter.PlaylistHolder holder, int position) {
+    public void onBindViewHolder(PlaylistHolder holder, int position) {
 
         holder.playlistName.setText(playlistsList.get(position).getName());
 

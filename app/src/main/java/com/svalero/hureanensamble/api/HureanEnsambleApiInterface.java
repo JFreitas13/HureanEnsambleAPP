@@ -1,5 +1,6 @@
 package com.svalero.hureanensamble.api;
 
+import com.svalero.hureanensamble.domain.Event;
 import com.svalero.hureanensamble.domain.Login;
 import com.svalero.hureanensamble.domain.Playlist;
 import com.svalero.hureanensamble.domain.Product;
@@ -79,14 +80,28 @@ public interface HureanEnsambleApiInterface {
     Call<List<User>> getUsers();
 
     @POST("/users")
-    Call<User> addUSer(@Body User user);
+    Call<User> addUser(@Body User user);
 
     @DELETE("/users/{id}")
-    Call<Void> deleteUSer(@Path("id") long id);
+    Call<Void> deleteUser(@Path("id") long id);
 
     @PUT("/users/{id}")
     Call<User> modifyUser(@Path("id") long id, @Body User user);
 
+    //event
+    @GET("/events")
+    Call<List<Event>> getEvents();
 
+    @POST("/events")
+    Call<Event> addEvent(@Body Event event);
+
+    @DELETE("/events/{id}")
+    Call<Void> deleteEvent(@Path("id") long id);
+
+    @PUT("/events/{id}")
+    Call<Event> modifyEvent(@Path("id") long id, @Body Event event);
+
+    @GET("/users/{id}/events")
+    Call<List<Event>> getEventsByUserId(@Path("id") long userId);
 
 }

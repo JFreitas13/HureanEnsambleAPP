@@ -1,6 +1,8 @@
 package com.svalero.hureanensamble.domain;
 
-public class Song {
+import java.io.Serializable;
+
+public class Song implements Serializable {
     private long id;
     private String name;
     private String url;

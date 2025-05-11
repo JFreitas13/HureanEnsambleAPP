@@ -22,4 +22,15 @@
     <string name="are_you_sure_delete_song_message" >Tens a certeza que queres elimar a musica?</string>
     <string name="delete_song_title">Eliminar Canción</string>
     <string name="nombre_usuario">Nombre Usuario</string>
+    <string name="modificar_cancion">Modificar</string>
+    <string name="are_you_sure_modify_song_message">Seguro que quieres modificar?</string>
+    <string name="modify_song_title">Modificar Cancion</string>
+    <string name="nombre_del_usuario">Nombre del usuario</string>
+    <string name="new_email">Email</string>
+    <string name="new_contrasena">Contraseña</string>
+    <string name="add_user">Add User</string>
+    <string-array name="user_rol_options">
+        <item>admin</item>
+        <item>user</item>
+    </string-array>
 </resources>

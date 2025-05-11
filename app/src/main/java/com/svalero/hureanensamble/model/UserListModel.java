@@ -45,6 +45,4 @@ public class UserListModel implements UserListContract.Model {
             }
         });
     }
-
-
 }

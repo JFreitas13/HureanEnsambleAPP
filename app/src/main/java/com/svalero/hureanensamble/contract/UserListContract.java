@@ -13,7 +13,7 @@ public interface UserListContract {
             void onLoadUserError(String message);
         }
 
-        void loadAllUsers(UserListContract.Model.OnLoadUserListener listener);
+        void loadAllUsers(OnLoadUserListener listener);
     }
 
     interface View {

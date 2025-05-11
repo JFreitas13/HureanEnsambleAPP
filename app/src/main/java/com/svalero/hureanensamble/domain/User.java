@@ -18,6 +18,14 @@ public class User  implements Serializable {
         this.rol = rol;
     }
 
+    public User(String name, String email, String password, String rol) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.rol = rol;
+    }
+
     // Constructor para login
     public User(String email, String password) {
         this.email = email;
@@ -27,6 +35,11 @@ public class User  implements Serializable {
 
     public long getId() {
         return id;
+    }
+
+    public String getIdString() {
+        String getIdString = String.valueOf(id);
+        return  getIdString;
     }
 
     public void setId(long id) {

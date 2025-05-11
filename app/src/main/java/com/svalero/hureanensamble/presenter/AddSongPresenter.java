@@ -25,7 +25,6 @@ public class AddSongPresenter implements AddSongContract.Presenter, AddSongContr
     public void onRegisterSuccess(Song song) {
         view.showMessage("La canción '" + song.getName() + "' se ha añadido correctamente.");
 
-
     }
 
     @Override
@@ -33,6 +32,5 @@ public class AddSongPresenter implements AddSongContract.Presenter, AddSongContr
         view.showError("Se ha producido un error al añadir la canción. Por favor, intentalo de nuevo.");
 
     }
-
 
 }

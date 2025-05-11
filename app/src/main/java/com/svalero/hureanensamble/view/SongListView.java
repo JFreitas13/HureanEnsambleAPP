@@ -67,7 +67,6 @@ public class SongListView extends AppCompatActivity implements SongListContract.
         adapter = new SongAdapter(this, songList);
         recyclerView.setAdapter(adapter);
 
-
     }
 
     @Override
@@ -90,17 +89,6 @@ public class SongListView extends AppCompatActivity implements SongListContract.
         adapter.updateData(filteredSongList);//metodo update
 
     }
-
-    /*private void filterSongs(String query) {
-        filteredSongList.clear();
-        for (Song song : songList) {
-            if (song.getName().toLowerCase().contains(query.toLowerCase())) {
-                filteredSongList.add(song); // Añadir las canciones que coinciden con el query
-            }
-        }
-        adapter.notifyDataSetChanged(); // Notificar cambios al adapter
-    }
-     */
 
     //filtrar canciones
     private void filterSongs(String query) {

@@ -19,6 +19,7 @@ import com.svalero.hureanensamble.R;
 import com.svalero.hureanensamble.contract.DeleteSongContract;
 import com.svalero.hureanensamble.domain.Song;
 import com.svalero.hureanensamble.presenter.DeleteSongPresenter;
+import com.svalero.hureanensamble.view.ModifySongView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,16 +32,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
     private List<Song> filteredSongList;
     private View snackBarView;
     private DeleteSongPresenter presenter;
-//    // Posición de la canción que se va a eliminar (usada por el presenter)
-//    private int pendingDeletePosition = -1;
-//
-//    public int getPendingDeletePosition() {
-//        return pendingDeletePosition;
-//    }
-//
-//    public void setPendingDeletePosition(int position) {
-//        this.pendingDeletePosition = position;
-//    }
+
     //TODO: BOTON MODIFICAR Y BOTON ELIMINAR
 
 
@@ -118,11 +110,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
         return null;
     }
 
-//    // Método que elimina la canción del RecyclerView solo si la API respondió correctamente
-//    public void deleteSongAtPosition(int position) {
-//        filteredSongList.remove(position); // Quitamos la canción de la lista filtrada
-//        notifyItemRemoved(position);       // Notificamos al RecyclerView que se ha eliminado un ítem
-//    }
 
     @Override
     public void showError(String errorMessage) {
@@ -139,6 +126,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
         public TextView songName;
         public TextView songUrl;
         public ImageView songImage;
+        public Button modifySongButton;
         public Button deleteSongButton;
 
         public View parentView; //vista padre: recyclerView
@@ -152,13 +140,21 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             songName = view.findViewById((R.id.song_name));
             songUrl = view.findViewById(R.id.song_url);
             songImage = view.findViewById(R.id.song_list_image);
+            modifySongButton = view.findViewById(R.id.modify_song_button);
             deleteSongButton = view.findViewById(R.id.delete_song_button);
 
             //pulsando estos botones llamamos al metodo correspondiente
-//            deleteSongButton.setOnClickListener(v -> {
-//                int position = getAdapterPosition();  // Obtenemos la posición del ítem
-
+            modifySongButton.setOnClickListener(v -> modifySong(getAdapterPosition()));
             deleteSongButton.setOnClickListener(v -> deleteBook(getAdapterPosition()));
+        }
+
+        //metodo boton modificar
+        private void modifySong(int position) {
+            Song song = filteredSongList.get(position);
+
+            Intent intent = new Intent(context, ModifySongView.class);
+            intent.putExtra("song", song);
+            context.startActivity(intent);
         }
 
         private void deleteBook(int position) {

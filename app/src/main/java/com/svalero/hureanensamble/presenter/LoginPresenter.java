@@ -38,7 +38,7 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.Mo
     @Override
     public void onLoginSuccess(User user) {
         UserSession session = new UserSession(view); //guardo datos Sharedpreferences
-        session.saveUser(user.getName(), user.getRol());
+        session.saveUser(user.getName(), user.getRol(), user.getIdString());
 
         view.showMessage("Bienvenido " + user.getName());
         view.navigateToHome();  // Navegar a la pantalla principal después del login
