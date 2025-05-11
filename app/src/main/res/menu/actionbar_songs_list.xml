@@ -13,8 +13,13 @@
         android:title="@string/sobre_nosotros"
         app:showAsAction="always" />
     <item
+        android:id="@+id/home"
+        android:icon="@drawable/home_24px"
+        android:title="Home"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/logout"
-        android:icon="@android:drawable/ic_lock_power_off"
+        android:icon="@drawable/logout_24px"
         android:title="@string/logout"
         app:showAsAction="always" />
 

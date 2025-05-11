@@ -52,7 +52,7 @@ public class AddUserView extends AppCompatActivity implements AddUserContract.Vi
 
     //boton CANCELAR
     public void cancelButton(View view) {
-        getOnBackPressedDispatcher();
+        getOnBackPressedDispatcher().onBackPressed();
     }
 
     @Override

@@ -140,6 +140,10 @@ public class SongListView extends AppCompatActivity implements SongListContract.
             Intent intent = new Intent(this, AddSongView.class);
             startActivity(intent);
             return true;
+        } else if (item.getItemId() == R.id.home){
+            Intent intent = new Intent(this, HomepageView.class);
+            startActivity(intent);
+            return true;
         }
         return false;
     }

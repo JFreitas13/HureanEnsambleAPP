@@ -103,7 +103,11 @@ public class UserListView extends AppCompatActivity implements UserListContract.
             Intent intent = new Intent(this, AddUserView.class);
             startActivity(intent);
             return true;
+        }else if (item.getItemId() == R.id.home){
+            Intent intent = new Intent(this, HomepageView.class);
+            startActivity(intent);
+            return true;
         }
-            return false;
+        return false;
     }
 }
