@@ -34,4 +34,7 @@
     </string-array>
     <string name="are_you_sure_delete_user_message">"¿Estás seguro que quieres eliminar el usuario?"</string>
     <string name="delete_user_title">Eliminar Usuario</string>
+    <string name="modificar_usuario">MODIFICAR USUARIO</string>
+    <string name="are_you_sure_modify_user_message">¿Estás seguro que quieres modificar el usuario?</string>
+    <string name="modify_user_title">Modificar usuario</string>
 </resources>

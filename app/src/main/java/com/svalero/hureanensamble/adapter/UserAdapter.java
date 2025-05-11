@@ -2,6 +2,7 @@ package com.svalero.hureanensamble.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.svalero.hureanensamble.contract.DeleteUserContract;
 import com.svalero.hureanensamble.domain.Song;
 import com.svalero.hureanensamble.domain.User;
 import com.svalero.hureanensamble.presenter.DeleteUserPresenter;
+import com.svalero.hureanensamble.view.ModifySongView;
+import com.svalero.hureanensamble.view.ModifyUserView;
 
 import java.util.List;
 
@@ -69,6 +72,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> im
     public class UserHolder extends RecyclerView.ViewHolder {
         public TextView userName;
         public TextView userEmail;
+        public Button modifyUserButton;
         public Button deleteUserButton;
 
         public View parentView; //vista padre: recyclerView
@@ -81,10 +85,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> im
 
             userName = view.findViewById(R.id.user_name);
             userEmail = view.findViewById(R.id.user_email);
+            modifyUserButton = view.findViewById(R.id.modify_user_button);
             deleteUserButton = view.findViewById(R.id.delete_user_button);
 
             //pulsando estos botones llamamos al metodo correspondiente
+            modifyUserButton.setOnClickListener(v -> modifyUser(getAdapterPosition()));
             deleteUserButton.setOnClickListener(v -> deleteUser(getAdapterPosition()));
+        }
+
+        //metodo boton modificar
+        private void modifyUser(int position) {
+            User user = userList.get(position);
+
+            Intent intent = new Intent(context, ModifyUserView.class);
+            intent.putExtra("user", user);
+            context.startActivity(intent);
         }
 
         private void deleteUser(int position) {

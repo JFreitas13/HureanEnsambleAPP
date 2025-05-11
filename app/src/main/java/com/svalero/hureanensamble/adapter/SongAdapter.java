@@ -33,8 +33,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
     private View snackBarView;
     private DeleteSongPresenter presenter;
 
-    //TODO: BOTON MODIFICAR Y BOTON ELIMINAR
-
 
     //1. constructor que creamos para pasarle los datos que queremos que pinte. El contexto y la lista
     public SongAdapter(Context context, List<Song> dataList) {
