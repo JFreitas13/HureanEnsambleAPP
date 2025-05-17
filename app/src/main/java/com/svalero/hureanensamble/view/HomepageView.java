@@ -74,6 +74,12 @@ public class HomepageView extends AppCompatActivity {
             startActivity(intent);
         });
 
+        eventHome = findViewById(R.id.btnEventosHome);
+        eventHome.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EventsListView.class);
+            startActivity(intent);
+        });
+
         // Obtener el rol desde el intent
       /*  String userRol = getIntent().getStringExtra("userRol");
 

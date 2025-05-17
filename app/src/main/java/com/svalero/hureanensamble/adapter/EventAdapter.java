@@ -21,10 +21,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
 
     Context context;
     private List<Event> eventList;
+    private boolean showUserName;  // flag para mostrar o no el usuario
 
-    public EventAdapter(Context context, List<Event> eventList) {
+
+    public EventAdapter(Context context, List<Event> eventList, boolean showUserName) {
         this.context = context;
         this.eventList = eventList;
+        this.showUserName = showUserName;
     }
 
     public Context getContext() {
@@ -46,10 +49,18 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
 
         Event event = eventList.get(position);
 
+        //Usuario
+        if (showUserName && event.getEventUser() != null) {
+            holder.userName.setText(event.getEventUser().getName());
+            holder.userName.setVisibility(View.VISIBLE);
+        } else {
+            holder.userName.setVisibility(View.GONE);
+        }
+
         //Playlist
         Playlist playlist = event.getEventPlaylist();
         if (playlist != null) {
-            holder.eventPlaylist.setText("Playlist: " + playlist.getName());
+            holder.eventPlaylist.setText(playlist.getName());
 
             // Hacer clicable el texto de la playlist
             holder.eventPlaylist.setOnClickListener(view -> {
@@ -60,13 +71,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         } else {
             holder.eventPlaylist.setText("Sin playlist asociada");
         }
-//
-//        // Nombre del usuario (oculto por defecto, visible si se desea mostrar)
-//        if (event.getEventUser() != null) {
-//            holder.userName.setText("Usuario: " + event.getEventUser().getName());
-//        } else {
-//            holder.userName.setText("Usuario desconocido");
-//        }
     }
 
     @Override
@@ -91,6 +95,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
     }
 }
 
+//        // Nombre del usuario (oculto por defecto, visible si se desea mostrar)
+//        if (event.getEventUser() != null) {
+//            holder.userName.setText("Usuario: " + event.getEventUser().getName());
+//        } else {
+//            holder.userName.setText("Usuario desconocido");
+//        }
 //
 //import android.content.Context;
 //import android.view.LayoutInflater;

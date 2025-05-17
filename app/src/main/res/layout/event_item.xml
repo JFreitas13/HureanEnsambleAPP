@@ -14,13 +14,13 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/user_name"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Nombre del usuario"-->
-<!--        android:textColor="@color/hurean_dark"-->
-<!--        android:visibility="gone" />-->
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del usuario"
+        android:textColor="@color/hurean_dark"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/event_date"

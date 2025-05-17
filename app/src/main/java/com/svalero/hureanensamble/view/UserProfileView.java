@@ -57,7 +57,7 @@ public class UserProfileView extends AppCompatActivity implements UserProfileCon
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new EventAdapter(this, eventList);
+        adapter = new EventAdapter(this, eventList, false);
         recyclerView.setAdapter(adapter);
     }
 
