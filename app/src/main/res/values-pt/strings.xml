@@ -39,4 +39,5 @@
     <string name="are_you_sure_modify_user_message">¿Estás seguro que quieres modificar el usuario?</string>
     <string name="modify_user_title">Modificar usuario</string>
     <string name="user_profile">user_profile</string>
+    <string name="imagen_anadir_cancion">imagen_anadir_cancion</string>
 </resources>

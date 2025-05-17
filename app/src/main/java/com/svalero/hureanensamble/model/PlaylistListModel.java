@@ -23,9 +23,32 @@ public class PlaylistListModel implements PlaylistListContract.Model {
     }
 
     @Override
-    public void loadAllPlaylist(OnLoadPlaylistListener listener) {
+    public void loadAllPlaylists(OnLoadPlaylistListener listener) {
         HureanEnsambleApiInterface hureanApi = HureanEnsambleAPI.buildInstance();
         Call<List<Playlist>> callPlaylist = hureanApi.getPlaylists();
+        Log.d("playlist", "llamada desde el model");
+        callPlaylist.enqueue(new Callback<List<Playlist>>() {
+            @Override
+            public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
+                Log.d("playlist", "llamada desde el model OK");
+                List<Playlist> playlists = response.body();
+                listener.onLoadPlaylistSuccess(playlists);
+            }
+
+            @Override
+            public void onFailure(Call<List<Playlist>> call, Throwable t) {
+                Log.d("playlist", "llamada desde el model KO");
+                t.printStackTrace();
+                String message = "Error al invocar la operación";
+                listener.onLoadPlaylistError(message);
+            }
+        });
+    }
+
+    @Override
+    public void loadPlaylistsByUser(String userId, OnLoadPlaylistListener listener) {
+        HureanEnsambleApiInterface hureanApi = HureanEnsambleAPI.buildInstance();
+        Call<List<Playlist>> callPlaylist = hureanApi.getPlaylistByUserId(Long.parseLong(userId));
         Log.d("playlist", "llamada desde el model");
         callPlaylist.enqueue(new Callback<List<Playlist>>() {
             @Override

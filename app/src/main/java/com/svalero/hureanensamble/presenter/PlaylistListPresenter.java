@@ -29,13 +29,23 @@ public class PlaylistListPresenter implements PlaylistListContract.Presenter, Pl
     }
 
     @Override
-    public void loadAllPlaylist() {
-        model.loadAllPlaylist(this);
+    public void loadAllPlaylists() {
+        model.loadAllPlaylists(this);
+    }
+
+    @Override
+    public void loadPlaylistsByUser(String userId) {
+        model.loadPlaylistsByUser(userId, this);
+    }
+
+
+    @Override
+    public void loadAllPlaylists(OnLoadPlaylistListener listener) {
 
     }
 
     @Override
-    public void loadAllPlaylist(OnLoadPlaylistListener listener) {
+    public void loadPlaylistsByUser(String userId, OnLoadPlaylistListener listener) {
 
     }
 }

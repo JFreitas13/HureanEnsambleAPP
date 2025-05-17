@@ -50,9 +50,17 @@ public class PlaylistListView extends AppCompatActivity implements PlaylistListC
     @Override
     protected void onResume() {
         super.onResume();
+        UserSession userSession = new UserSession(this);
+        String userId = userSession.getUserId();
+        String userRol = userSession.getUserRol();
 
         Log.d("playlist", "Llamada desde PlaylistView");
-        presenter.loadAllPlaylist();
+//        presenter.loadPlaylistsByUser(userId);
+        if ("admin".equalsIgnoreCase(userRol)) {
+            presenter.loadAllPlaylists();
+        } else {
+            presenter.loadPlaylistsByUser(userId);
+        }
     }
 
     @Override

@@ -26,7 +26,6 @@ public class UserProfileModel implements UserProfileContract.Model {
     public void getUserEvents(String userId, UserProfileContract.Model.OnLoadEventsListener listener) {
 
         HureanEnsambleApiInterface hureanApi = HureanEnsambleAPI.buildInstance();
-        //EventApi api = RetrofitClient.getInstance().create(EventApi.class);
         Call<List<Event>> callEvents = hureanApi.getEventsByUserId(Long.parseLong(userId));
         Log.d("userEvent", "llamada desde el model");
         callEvents.enqueue(new Callback<List<Event>>() {

@@ -75,6 +75,9 @@ public interface HureanEnsambleApiInterface {
             @Path("songId") long songId
     );
 
+    @GET("/users/{id}/playlists")
+    Call<List<Playlist>> getPlaylistByUserId(@Path("id") long userId);
+
     //user
     @GET("/users")
     Call<List<User>> getUsers();

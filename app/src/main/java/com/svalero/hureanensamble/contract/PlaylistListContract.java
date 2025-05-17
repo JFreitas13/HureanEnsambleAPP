@@ -9,11 +9,10 @@ public interface PlaylistListContract {
     interface Model {
         interface OnLoadPlaylistListener {
             void onLoadPlaylistSuccess(List<Playlist> playlists);
-
             void onLoadPlaylistError(String message);
         }
-
-        void loadAllPlaylist(PlaylistListContract.Model.OnLoadPlaylistListener listener);
+        void loadAllPlaylists(OnLoadPlaylistListener listener);
+        void loadPlaylistsByUser(String userId, OnLoadPlaylistListener listener);
     }
 
     interface View {
@@ -23,6 +22,7 @@ public interface PlaylistListContract {
     }
 
     interface Presenter {
-        void loadAllPlaylist();
+        void loadAllPlaylists();
+        void loadPlaylistsByUser(String userId);
     }
 }

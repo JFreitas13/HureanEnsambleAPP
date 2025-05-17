@@ -16,14 +16,11 @@ import com.svalero.hureanensamble.contract.UserProfileContract;
 import com.svalero.hureanensamble.domain.Event;
 import com.svalero.hureanensamble.presenter.UserProfilePresenter;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserProfileView extends AppCompatActivity implements UserProfileContract.View {
 
-    //private RecyclerView rvEventos;
     private List<Event> eventList;
     private EventAdapter adapter;
     private TextView tvWelcome;

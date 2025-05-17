@@ -79,20 +79,6 @@ public class HomepageView extends AppCompatActivity {
             Intent intent = new Intent(this, EventsListView.class);
             startActivity(intent);
         });
-
-        // Obtener el rol desde el intent
-      /*  String userRol = getIntent().getStringExtra("userRol");
-
-        Button btnAdminOnly = findViewById(R.id.adminButton);
-        Button btnUserCommon = findViewById(R.id.userButton);
-
-        if (userRol != null && userRol.equalsIgnoreCase("admin")) {
-            btnAdminOnly.setVisibility(View.VISIBLE);
-        } else {
-            btnAdminOnly.setVisibility(View.GONE); // ocultamos botón solo para admin
-        }
-
-        btnUserCommon.setVisibility(View.VISIBLE); // visible para todos*/
     }
 
     //crear el menu actionbar
@@ -100,21 +86,6 @@ public class HomepageView extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.actionbar_homepage, menu);
         return true;
     }
-
-    //eleccion en el actionBar
-   /* @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.sobre_nosotros) {
-            Intent intent = new Intent(this, AddBookView.class);
-            startActivity(intent);
-            return true;
-        } else if (item.getItemId() == R.id.logout) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        return false;
-    }*/
 
     //logout
     @Override

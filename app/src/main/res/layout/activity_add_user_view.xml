@@ -59,18 +59,18 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:ems="10"
+                android:hint="@string/nombre_del_usuario"
                 android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:text="@string/nombre_del_usuario" />
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="@string/new_email"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:text="@string/new_email"
                 android:textColor="#000000"
                 tools:ignore="TextFields" />
 
@@ -79,9 +79,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="@string/contrasena"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:text="@string/new_contrasena"
                 android:textColor="#000000"
                 tools:ignore="TextFields" />
 
