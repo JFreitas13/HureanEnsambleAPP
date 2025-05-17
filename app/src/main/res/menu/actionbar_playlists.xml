@@ -5,16 +5,21 @@
         android:id="@+id/sobre_nosotros"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/sobre_nosotros"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/home"
         android:icon="@drawable/home_24px"
         android:title="Home"
         app:showAsAction="always" />
     <item
+        android:id="@+id/userProfile"
+        android:icon="@drawable/user_profile_24px"
+        android:title="@string/user_profile"
+        app:showAsAction="always"/>
+    <item
         android:id="@+id/logout"
         android:icon="@drawable/logout_24px"
         android:title="@string/logout"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
 </menu>

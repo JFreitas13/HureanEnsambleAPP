@@ -4,11 +4,14 @@ import java.time.LocalDate;
 
 public class Event {
     private long id;
-    private LocalDate eventDate;
+    private String eventDate;
     private String place;
     private boolean paid;
 
-    public Event(long id, LocalDate eventDate, String place, boolean paid) {
+    private Playlist eventPlaylist;
+    private User eventUser;
+
+    public Event(long id, String eventDate, String place, boolean paid) {
         this.id = id;
         this.eventDate = eventDate;
         this.place = place;
@@ -23,12 +26,20 @@ public class Event {
         this.id = id;
     }
 
-    public LocalDate getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(LocalDate eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
+    }
+
+    public void setEventPlaylist(Playlist eventPlaylist) {
+        this.eventPlaylist = eventPlaylist;
+    }
+
+    public void setEventUser(User eventUser) {
+        this.eventUser = eventUser;
     }
 
     public String getPlace() {
@@ -45,6 +56,14 @@ public class Event {
 
     public void setPaid(boolean paid) {
         this.paid = paid;
+    }
+
+    public Playlist getEventPlaylist() {
+        return eventPlaylist;
+    }
+
+    public User getEventUser() {
+        return eventUser;
     }
 
 }

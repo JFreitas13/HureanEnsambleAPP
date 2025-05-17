@@ -17,17 +17,17 @@
         android:layout_marginBottom="16dp"/>
 
     <!-- Días para el próximo evento -->
-    <TextView
-        android:id="@+id/days_letf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Faltan X días para tu próximo evento"
-        android:textSize="18sp"
-        android:layout_marginBottom="16dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/days_letf"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Faltan X días para tu próximo evento"-->
+<!--        android:textSize="18sp"-->
+<!--        android:layout_marginBottom="16dp"/>-->
 
     <!-- Lista de eventos -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvEventos"
+        android:id="@+id/events_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
