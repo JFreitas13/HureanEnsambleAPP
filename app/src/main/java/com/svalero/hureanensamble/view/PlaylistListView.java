@@ -79,6 +79,16 @@ public class PlaylistListView extends AppCompatActivity implements PlaylistListC
     //crear el menu actionbar
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_playlists, menu);
+
+        // Obtener el rol desde la sesión
+        UserSession session = new UserSession(this);
+        String rol = session.getUserRol();
+
+        //hacer que el boton de añadir playlist solo sea visible si el rol del usuario es admin
+        if (!"admin".equalsIgnoreCase(rol)) {
+            menu.findItem(R.id.add_playlist).setVisible(false);
+        }
+
         return true;
     }
 
@@ -102,8 +112,12 @@ public class PlaylistListView extends AppCompatActivity implements PlaylistListC
             startActivity(intent);
             return true;
         //user profile
-        }else if (item.getItemId() == R.id.userProfile) {
+        } else if (item.getItemId() == R.id.userProfile) {
             Intent intent = new Intent(this, UserProfileView.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.add_playlist) {
+            Intent intent = new Intent(this, AddPlaylistView.class);
             startActivity(intent);
             return true;
         }

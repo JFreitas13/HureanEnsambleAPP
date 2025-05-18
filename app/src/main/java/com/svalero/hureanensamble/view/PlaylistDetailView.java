@@ -61,7 +61,7 @@ public class PlaylistDetailView extends AppCompatActivity implements PlaylistDet
 //        String eventName = (events != null && !events.isEmpty()) ? events.get(0).getPlace() : "Sin evento";
 //        playlistEventText.setText("Evento: " + eventName);
 
-        songAdapter = new SongAdapter(this, playlist.getSongs(), playlist.getId());
+        songAdapter = new SongAdapter(this, playlist.getSongs(), playlist.getId()); //id de la playlist
         songListView.setAdapter(songAdapter);
     }
 

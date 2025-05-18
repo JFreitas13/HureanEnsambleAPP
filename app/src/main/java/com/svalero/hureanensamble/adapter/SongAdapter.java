@@ -165,18 +165,22 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
                 modifySongButton.setVisibility(View.GONE);
                 deleteSongButton.setVisibility(View.GONE);
             }
-            addSongToPlaylistButton.setVisibility(View.VISIBLE);
+
 
             if (playlistId != null) {
+                //si tengo id de playlis, es porque estoy en playlistDetail y entonces quiero que se vena el boton de eliminar pero no el de añadir
                 deleteSongFromPlaylistButton.setVisibility(View.VISIBLE);
-                deleteSongFromPlaylistButton.setOnClickListener(v -> deleteSongFromPlaylist(getAdapterPosition()));
+                addSongToPlaylistButton.setVisibility(View.GONE);
             } else {
+                //si el playlistId es null entonces lo contrario porque estoy en el listado de canciones
                 deleteSongFromPlaylistButton.setVisibility(View.GONE);
+                addSongToPlaylistButton.setVisibility(View.VISIBLE);
             }
 
             modifySongButton.setOnClickListener(v -> modifySong(getAdapterPosition()));
             deleteSongButton.setOnClickListener(v -> deleteSong(getAdapterPosition()));
             addSongToPlaylistButton.setOnClickListener(v -> addSongToPlaylist(getAdapterPosition()));
+            deleteSongFromPlaylistButton.setOnClickListener(v -> deleteSongFromPlaylist(getAdapterPosition()));
             //deleteSongFromPlaylistButton.setOnClickListener(v -> deleteSongFromPlaylist(getAdapterPosition()));
 
         }

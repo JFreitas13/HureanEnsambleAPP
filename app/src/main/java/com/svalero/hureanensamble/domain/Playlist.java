@@ -7,6 +7,7 @@ public class Playlist implements Serializable {
 
     private long id;
     private String name;
+    private User playlistUser;
     private String userId;
     private List<Song> songs;
 
@@ -21,10 +22,20 @@ public class Playlist implements Serializable {
         this.songs = songs;
     }
 
+    public Playlist(long id, String name, User playlistUser) {
+        this.id = id;
+        this.name = name;
+        this.playlistUser = playlistUser;
+    }
+
     public Playlist(long id, String name, String userId) {
         this.id = id;
         this.name = name;
         this.userId = userId;
+    }
+
+    public Playlist() {
+
     }
 
     public List<Song> getSongs() {
@@ -49,6 +60,14 @@ public class Playlist implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public User getPlaylistUser() {
+        return playlistUser;
+    }
+
+    public void setPlaylistUser(User playlistUser) {
+        this.playlistUser = playlistUser;
     }
 
     public String getUserId() {
