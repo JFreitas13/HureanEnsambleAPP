@@ -11,21 +11,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.hureanensamble.R;
 import com.svalero.hureanensamble.adapter.SongAdapter;
+import com.svalero.hureanensamble.contract.DeleteSongFromPlaylistContract;
 import com.svalero.hureanensamble.contract.PlaylistDetailContract;
 import com.svalero.hureanensamble.contract.PlaylistListContract;
 import com.svalero.hureanensamble.domain.Event;
 import com.svalero.hureanensamble.domain.Playlist;
 import com.svalero.hureanensamble.domain.User;
+import com.svalero.hureanensamble.presenter.DeleteSongFromPlaylistPresenter;
 import com.svalero.hureanensamble.presenter.PlaylistDetailPresenter;
 
 import java.util.List;
 
-public class PlaylistDetailView extends AppCompatActivity implements PlaylistDetailContract.View {
+public class PlaylistDetailView extends AppCompatActivity implements PlaylistDetailContract.View, DeleteSongFromPlaylistContract.View {
 
     private TextView playlistNameText, playlistUserText, playlistEventText;
     private RecyclerView songListView;
     private SongAdapter songAdapter;
     private PlaylistDetailPresenter presenter;
+    private DeleteSongFromPlaylistPresenter playlistPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class PlaylistDetailView extends AppCompatActivity implements PlaylistDet
 
         presenter = new PlaylistDetailPresenter(this);
         presenter.loadPlaylistById(playlistId);
+
+        playlistPresenter = new DeleteSongFromPlaylistPresenter(this);
     }
 
     @Override
@@ -56,7 +61,7 @@ public class PlaylistDetailView extends AppCompatActivity implements PlaylistDet
 //        String eventName = (events != null && !events.isEmpty()) ? events.get(0).getPlace() : "Sin evento";
 //        playlistEventText.setText("Evento: " + eventName);
 
-        songAdapter = new SongAdapter(this, playlist.getSongs());
+        songAdapter = new SongAdapter(this, playlist.getSongs(), playlist.getId());
         songListView.setAdapter(songAdapter);
     }
 
@@ -65,9 +70,9 @@ public class PlaylistDetailView extends AppCompatActivity implements PlaylistDet
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-//    @Override
-//    public void showPlaylistDetail(Playlist playlist) {
-//
-//    }
-
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(this, "Canción eliminada correctamente", Toast.LENGTH_SHORT).show();
+        presenter.loadPlaylistById(getIntent().getLongExtra("playlist_id", -1)); // refrescar
+    }
 }

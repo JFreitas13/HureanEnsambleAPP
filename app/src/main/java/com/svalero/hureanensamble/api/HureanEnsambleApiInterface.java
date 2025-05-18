@@ -70,10 +70,7 @@ public interface HureanEnsambleApiInterface {
     Call<Playlist> addSongToPlaylist(@Path("playlistId") long playlistId, @Path("songId") long songId);
 
     @DELETE("playlists/{playlistId}/songs/{songId}")
-    Call<Void> deleteSongFromPlaylist(
-            @Path("playlistId") long playlistId,
-            @Path("songId") long songId
-    );
+    Call<Void> deleteSongFromPlaylist(@Path("playlistId") long playlistId, @Path("songId") long songId);
 
     @GET("/users/{id}/playlists")
     Call<List<Playlist>> getPlaylistByUserId(@Path("id") long userId);

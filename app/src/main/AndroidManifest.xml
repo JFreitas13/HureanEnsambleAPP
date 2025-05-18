@@ -109,6 +109,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name="com.svalero.hureanensamble.view.AddSongToPlaylistView"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.LoginView"
             android:exported="true" >
             <intent-filter>

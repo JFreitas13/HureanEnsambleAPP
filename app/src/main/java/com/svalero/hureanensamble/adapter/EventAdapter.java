@@ -19,7 +19,7 @@ import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder> {
 
-    Context context;
+    private Context context; //activity en la que estamos
     private List<Event> eventList;
     private boolean showUserName;  // flag para mostrar o no el usuario
 

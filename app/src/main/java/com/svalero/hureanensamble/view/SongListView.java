@@ -64,7 +64,7 @@ public class SongListView extends AppCompatActivity implements SongListContract.
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new SongAdapter(this, songList);
+        adapter = new SongAdapter(this, songList, null);
         recyclerView.setAdapter(adapter);
 
     }

@@ -16,30 +16,42 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.svalero.hureanensamble.R;
+import com.svalero.hureanensamble.Util.UserSession;
 import com.svalero.hureanensamble.contract.DeleteSongContract;
+import com.svalero.hureanensamble.contract.DeleteSongFromPlaylistContract;
 import com.svalero.hureanensamble.domain.Song;
+import com.svalero.hureanensamble.presenter.DeleteSongFromPlaylistPresenter;
 import com.svalero.hureanensamble.presenter.DeleteSongPresenter;
+import com.svalero.hureanensamble.view.AddSongToPlaylistView;
 import com.svalero.hureanensamble.view.ModifySongView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 //Indicamos a Android lo que debe pintar en el ReclyclerView. Usamos el patron Holder
-public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> implements DeleteSongContract.View {
+public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> implements DeleteSongContract.View, DeleteSongFromPlaylistContract.View   {
 
     private Context context; // Activity en la que estamos
     private List<Song> songList;
     private List<Song> filteredSongList;
     private View snackBarView;
     private DeleteSongPresenter presenter;
+    private String userRol;
+    private Long playlistId;
+    private DeleteSongFromPlaylistPresenter deleteSongFromPlaylistPresenter;
 
 
     //1. constructor que creamos para pasarle los datos que queremos que pinte. El contexto y la lista
-    public SongAdapter(Context context, List<Song> dataList) {
+    public SongAdapter(Context context, List<Song> dataList, Long playlistId) {
         this.context = context;
-        //this.filteredSongList = dataList; //lista de canciones
-        this.filteredSongList = new ArrayList<>(dataList);
+        this.filteredSongList = new ArrayList<>(dataList); //lista de canciones
+        this.playlistId = playlistId; //guardo el id de la playlist
         presenter = new DeleteSongPresenter(this);
+        deleteSongFromPlaylistPresenter = new DeleteSongFromPlaylistPresenter(this);
+
+        //Sesion de usuario para identificar el ROl
+        UserSession session = new UserSession(context);
+        userRol = session.getUserRol();
     }
 
     //acutalizar lista en la busqueda
@@ -126,6 +138,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
         public ImageView songImage;
         public Button modifySongButton;
         public Button deleteSongButton;
+        public Button addSongToPlaylistButton;
+        private Button deleteSongFromPlaylistButton;
 
         public View parentView; //vista padre: recyclerView
 
@@ -134,16 +148,39 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             super(view);
             parentView = view; //guardamos el componente padre
 
+
             songName = view.findViewById((R.id.song_name));
             songUrl = view.findViewById(R.id.song_url);
             songImage = view.findViewById(R.id.song_list_image);
             modifySongButton = view.findViewById(R.id.modify_song_button);
             deleteSongButton = view.findViewById(R.id.delete_song_button);
+            addSongToPlaylistButton = view.findViewById(R.id.add_song_to_playlist_button);
+            deleteSongFromPlaylistButton = view.findViewById(R.id.delete_song_from_playlist_button);
 
             //pulsando estos botones llamamos al metodo correspondiente
+            if ("admin".equalsIgnoreCase(userRol)) {
+                modifySongButton.setVisibility(View.VISIBLE);
+                deleteSongButton.setVisibility(View.VISIBLE);
+            } else {
+                modifySongButton.setVisibility(View.GONE);
+                deleteSongButton.setVisibility(View.GONE);
+            }
+            addSongToPlaylistButton.setVisibility(View.VISIBLE);
+
+            if (playlistId != null) {
+                deleteSongFromPlaylistButton.setVisibility(View.VISIBLE);
+                deleteSongFromPlaylistButton.setOnClickListener(v -> deleteSongFromPlaylist(getAdapterPosition()));
+            } else {
+                deleteSongFromPlaylistButton.setVisibility(View.GONE);
+            }
+
             modifySongButton.setOnClickListener(v -> modifySong(getAdapterPosition()));
             deleteSongButton.setOnClickListener(v -> deleteSong(getAdapterPosition()));
+            addSongToPlaylistButton.setOnClickListener(v -> addSongToPlaylist(getAdapterPosition()));
+            //deleteSongFromPlaylistButton.setOnClickListener(v -> deleteSongFromPlaylist(getAdapterPosition()));
+
         }
+
 
         //metodo boton modificar
         private void modifySong(int position) {
@@ -158,21 +195,52 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             //Dialogo para confirmar que se quiere eliminar
             AlertDialog.Builder builder = new AlertDialog.Builder(context); //le pasamos el contexto donde estamos
             builder.setMessage(R.string.are_you_sure_delete_song_message)
-                     .setTitle(R.string.delete_song_title)
-                     .setPositiveButton("Si", (dialog, id) -> { //añadir boton de si
-                         Song song = filteredSongList.get(position);   // Obtenemos la canción a eliminar
-                       //  setPendingDeletePosition(position);           // Guardamos la posición para usarla tras la respuesta de la API
-                         presenter.deleteSong(song.getId());           // Llamamos al presenter para que inicie el borrado en la API
+                    .setTitle(R.string.delete_song_title)
+                    .setPositiveButton("Si", (dialog, id) -> { //añadir boton de si
+                        Song song = filteredSongList.get(position);   // Obtenemos la canción a eliminar
+                        //  setPendingDeletePosition(position);           // Guardamos la posición para usarla tras la respuesta de la API
+                        presenter.deleteSong(song.getId());           // Llamamos al presenter para que inicie el borrado en la API
 
-                         filteredSongList.remove(position);
-                         notifyItemRemoved(position);
-                     })
-                     .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //boton del no
+                        filteredSongList.remove(position);
+                        notifyItemRemoved(position);
+                    })
+                    .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //boton del no
             AlertDialog dialog = builder.create();
             dialog.show(); //sin esto no se muestra el dialogo
-        };
+        }
 
+        ;
+
+        //metodo boton modificar
+        private void addSongToPlaylist(int position) {
+            Song song = filteredSongList.get(position);
+
+            Intent intent = new Intent(context, AddSongToPlaylistView.class);
+            intent.putExtra("song_id", song.getId());
+            context.startActivity(intent);
+        }
+
+        private void deleteSongFromPlaylist(int position) {
+            //Dialogo para confirmar que se quiere eliminar
+            AlertDialog.Builder builder = new AlertDialog.Builder(context); //le pasamos el contexto donde estamos
+            builder.setMessage("¿Estás seguro que quieres eliminar la canción de la playlist?")
+                    .setTitle(R.string.delete_song_title)
+                    .setPositiveButton("Si", (dialog, id) -> { //añadir boton de si
+                        Song song = filteredSongList.get(position);   // Obtenemos la canción a eliminar
+                        deleteSongFromPlaylistPresenter.deleteSongFromPlaylist(playlistId, song.getId());  // Llamamos al presenter para que inicie el borrado en la API
+
+                        filteredSongList.remove(position);
+                        notifyItemRemoved(position);
+                    })
+                    .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //boton del no
+            AlertDialog dialog = builder.create();
+            dialog.show(); //sin esto no se muestra el dialogo
+
+//            Song song = filteredSongList.get(position);
+//            deleteSongFromPlaylistPresenter.deleteSongFromPlaylist(playlistId, song.getId());
+//            filteredSongList.remove(position);
+//            notifyItemRemoved(position);
+        }
     }
-
 }
 

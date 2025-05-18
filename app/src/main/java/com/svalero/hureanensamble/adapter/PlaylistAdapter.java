@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.hureanensamble.R;
 import com.svalero.hureanensamble.domain.Playlist;
-import com.svalero.hureanensamble.domain.User;
 import com.svalero.hureanensamble.view.PlaylistDetailView;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
     @Override
     public PlaylistAdapter.PlaylistHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.playlist_item, parent, false); //el layout song_item de cada cancion
+                .inflate(R.layout.playlist_item, parent, false); //el layout playlist_item de cada playlist
         return new PlaylistHolder(view); //Creamos un holder para cada una de las estructuras que infla el layout
     }
 

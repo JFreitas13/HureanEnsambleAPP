@@ -54,8 +54,8 @@ public class PlaylistListView extends AppCompatActivity implements PlaylistListC
         String userId = userSession.getUserId();
         String userRol = userSession.getUserRol();
 
+        //si es admin ve todas las playlist si no se ven las playlist del usuario
         Log.d("playlist", "Llamada desde PlaylistView");
-//        presenter.loadPlaylistsByUser(userId);
         if ("admin".equalsIgnoreCase(userRol)) {
             presenter.loadAllPlaylists();
         } else {
@@ -82,9 +82,9 @@ public class PlaylistListView extends AppCompatActivity implements PlaylistListC
         return true;
     }
 
-    //logout
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //logout
         if (item.getItemId() == R.id.logout) {
             //cierro session
             UserSession session = new UserSession(this);
@@ -96,10 +96,12 @@ public class PlaylistListView extends AppCompatActivity implements PlaylistListC
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             return true;
+        //homepage
         } else if (item.getItemId() == R.id.home){
             Intent intent = new Intent(this, HomepageView.class);
             startActivity(intent);
             return true;
+        //user profile
         }else if (item.getItemId() == R.id.userProfile) {
             Intent intent = new Intent(this, UserProfileView.class);
             startActivity(intent);
