@@ -1,6 +1,9 @@
 package com.svalero.hureanensamble.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -10,17 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.svalero.hureanensamble.R;
+import com.svalero.hureanensamble.Util.UserSession;
 import com.svalero.hureanensamble.adapter.SongAdapter;
 import com.svalero.hureanensamble.contract.DeleteSongFromPlaylistContract;
 import com.svalero.hureanensamble.contract.PlaylistDetailContract;
-import com.svalero.hureanensamble.contract.PlaylistListContract;
-import com.svalero.hureanensamble.domain.Event;
 import com.svalero.hureanensamble.domain.Playlist;
-import com.svalero.hureanensamble.domain.User;
 import com.svalero.hureanensamble.presenter.DeleteSongFromPlaylistPresenter;
 import com.svalero.hureanensamble.presenter.PlaylistDetailPresenter;
-
-import java.util.List;
 
 public class PlaylistDetailView extends AppCompatActivity implements PlaylistDetailContract.View, DeleteSongFromPlaylistContract.View {
 
@@ -74,5 +73,40 @@ public class PlaylistDetailView extends AppCompatActivity implements PlaylistDet
     public void showMessage(String message) {
         Toast.makeText(this, "Canción eliminada correctamente", Toast.LENGTH_SHORT).show();
         presenter.loadPlaylistById(getIntent().getLongExtra("playlist_id", -1)); // refrescar
+    }
+
+    //crear el menu actionbar
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_comun, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //logout
+        if (item.getItemId() == R.id.logout) {
+            //cierro session
+            UserSession session = new UserSession(this);
+            session.clear();
+
+            //Regirigo a la pantalla de Login
+            Intent intent = new Intent(this, LoginView.class);
+            // Establece flags para limpiar el historial de actividades y empezar una nueva tarea
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return true;
+            //homepage
+        } else if (item.getItemId() == R.id.home){
+            Intent intent = new Intent(this, HomepageView.class);
+            startActivity(intent);
+            return true;
+            //user profile
+        } else if (item.getItemId() == R.id.userProfile) {
+            Intent intent = new Intent(this, UserProfileView.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 }

@@ -1,7 +1,10 @@
 package com.svalero.hureanensamble.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,5 +91,40 @@ public class UserProfileView extends AppCompatActivity implements UserProfileCon
     @Override
     public void showError(String message) {
         Toast.makeText(this, "Error: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    //crear el menu actionbar
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_comun, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //logout
+        if (item.getItemId() == R.id.logout) {
+            //cierro session
+            UserSession session = new UserSession(this);
+            session.clear();
+
+            //Regirigo a la pantalla de Login
+            Intent intent = new Intent(this, LoginView.class);
+            // Establece flags para limpiar el historial de actividades y empezar una nueva tarea
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return true;
+            //homepage
+        } else if (item.getItemId() == R.id.home){
+            Intent intent = new Intent(this, HomepageView.class);
+            startActivity(intent);
+            return true;
+            //user profile
+        } else if (item.getItemId() == R.id.userProfile) {
+            Intent intent = new Intent(this, UserProfileView.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 }

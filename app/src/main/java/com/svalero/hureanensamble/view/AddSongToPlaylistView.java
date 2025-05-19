@@ -80,6 +80,11 @@ public class AddSongToPlaylistView extends AppCompatActivity implements AddSongT
         spinnerPlaylists.setAdapter(adapter);
     }
 
+    //boton CANCELAR
+    public void cancelButton(View view) {
+        getOnBackPressedDispatcher().onBackPressed();
+    }
+
     @Override
     public void showError(String message) {
         Toast.makeText(this, "Error: " + message, Toast.LENGTH_LONG).show();  // Muestra error

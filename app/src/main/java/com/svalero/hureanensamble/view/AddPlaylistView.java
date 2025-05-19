@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
 
     private EditText editPlaylistName;
     private Spinner spinnerUsers;
+   // private AutoCompleteTextView autoCompleteUsers; //spinner con buscador
     private AddPlaylistPresenter presenter;
     private List<User> userList;
 
@@ -33,6 +35,7 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
         Log.d("add Playlist", "llamada desde addPlaylistView");
 
         editPlaylistName = findViewById(R.id.editPlaylistName);
+       // autoCompleteUsers = findViewById(R.id.autocomplete_users); //spinner con buscador
         spinnerUsers = findViewById(R.id.spinner_users);
 
         presenter = new AddPlaylistPresenter(this);
@@ -42,9 +45,25 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
     public void addButton(View view) {
         String name = editPlaylistName.getText().toString();
         User selectedUser = (User) spinnerUsers.getSelectedItem();
+        //User selectedUser = (User) autoCompleteUsers.getAdapter().getItem(autoCompleteUsers.getListSelection());
 
 //        if (name.isEmpty()) {
 //            showError("Introduce un nombre");
+//            return;
+//        }
+
+//        String selectedName = autoCompleteUsers.getText().toString().trim();
+//        User selectedUser = null;
+//
+//        for (User user : userList) {
+//            if (user.getName().equalsIgnoreCase(selectedName)) {
+//                selectedUser = user;
+//                break;
+//            }
+//        }
+//
+//        if (selectedUser == null) {
+//            showError("Selecciona un cliente válido");
 //            return;
 //        }
 
@@ -63,6 +82,8 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
         ArrayAdapter<User> adapter = new ArrayAdapter<User>(this,
                 android.R.layout.simple_spinner_item,
                 users) {
+//                android.R.layout.simple_dropdown_item_1line,
+//                users) {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -81,6 +102,7 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUsers.setAdapter(adapter);
+//        autoCompleteUsers.setAdapter(adapter);
 
     }
 

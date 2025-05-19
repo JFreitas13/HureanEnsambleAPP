@@ -32,4 +32,15 @@
         android:textColor="@android:color/white"
         android:textSize="16sp" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/background_medium"
+        android:padding="12dp"
+        android:onClick="cancelButton"
+        android:text="@string/cancelar"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+
 </LinearLayout>
