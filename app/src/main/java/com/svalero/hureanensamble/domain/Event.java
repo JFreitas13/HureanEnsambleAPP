@@ -18,6 +18,10 @@ public class Event {
         this.paid = paid;
     }
 
+    public Event() {
+
+    }
+
     public long getId() {
         return id;
     }
