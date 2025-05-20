@@ -8,6 +8,14 @@
         android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/download_pdf_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descargar PDF de canciones"
+            android:textColor="@color/background_light"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
 
         <TextView
             android:id="@+id/playlist_name_text"
