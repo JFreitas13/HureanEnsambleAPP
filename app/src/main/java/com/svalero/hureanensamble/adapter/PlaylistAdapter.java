@@ -12,7 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.hureanensamble.R;
+import com.svalero.hureanensamble.Util.UserSession;
 import com.svalero.hureanensamble.domain.Playlist;
+import com.svalero.hureanensamble.domain.Song;
+import com.svalero.hureanensamble.view.ModifyPlaylistView;
+import com.svalero.hureanensamble.view.ModifySongView;
 import com.svalero.hureanensamble.view.PlaylistDetailView;
 
 import java.util.List;
@@ -21,11 +25,16 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
 
     private Context context; // Activity en la que estamos
     private List<Playlist> playlistsList;
+    private String userRol;
 
     //1. constructor que creamos para pasarle los datos que queremos que pinte. El contexto y la lista
     public PlaylistAdapter(Context context, List<Playlist> dataList){
         this.context = context;
         this.playlistsList = dataList;
+
+        //Sesion de usuario para identificar el ROl
+        UserSession session = new UserSession(context);
+        userRol = session.getUserRol();
     }
 
     public Context getContext() {
@@ -56,6 +65,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
     public class PlaylistHolder extends RecyclerView.ViewHolder{
         public TextView playlistName;
         public Button seePlaylistDetailButton;
+        public Button modifyPlaylistButton;
 
         public View parentView;
 
@@ -66,9 +76,17 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
 
             playlistName = view.findViewById(R.id.playlist_name);
             seePlaylistDetailButton = view.findViewById(R.id.see_playlist_button);
+            modifyPlaylistButton = view.findViewById(R.id.modify_playlist_button);
 
             //pulsando estos botones llamamos al metodo correspondiente
+            if ("admin".equalsIgnoreCase(userRol)) {
+                modifyPlaylistButton.setVisibility(View.VISIBLE);
+            } else {
+                modifyPlaylistButton.setVisibility(View.GONE);
+            }
+
             seePlaylistDetailButton.setOnClickListener(v -> seePlaylistDetail(getAdapterPosition()));
+            modifyPlaylistButton.setOnClickListener(v -> modifyPlaylist(getAdapterPosition()));
 
         }
 
@@ -79,6 +97,15 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
             intent.putExtra("playlist_id", playlistsList.get(position).getId());
             //intent.putExtra("playlist_name", playlist.getName());
             // Aquí puedes añadir más extras si ya tienes el usuario/evento cargado
+            context.startActivity(intent);
+        }
+
+        //metodo boton modificar
+        private void modifyPlaylist(int position) {
+            Playlist playlist = playlistsList.get(position);
+
+            Intent intent = new Intent(context, ModifyPlaylistView.class);
+            intent.putExtra("playlist", playlist);
             context.startActivity(intent);
         }
     }

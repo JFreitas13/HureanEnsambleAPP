@@ -38,6 +38,12 @@ public class Playlist implements Serializable {
 
     }
 
+    public Playlist(String name, User playlistUser) {
+        this.name = name;
+        this.playlistUser = playlistUser;
+    }
+
+
     public List<Song> getSongs() {
         return songs;
     }

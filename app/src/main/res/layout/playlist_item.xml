@@ -28,6 +28,35 @@
         android:textStyle="bold" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/modify_playlist_button"
+            style="@style/HureanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/modify_song_button"
+            android:textColor="@color/background_light"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:backgroundTint="@color/hurean_dark" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_plsylist_button"
+            style="@style/HureanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_song_button"
+            android:textColor="@color/background_light"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:backgroundTint="@color/hurean_dark" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

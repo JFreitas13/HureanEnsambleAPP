@@ -63,6 +63,9 @@ public interface HureanEnsambleApiInterface {
     @DELETE("/playlists/{id}")
     Call<Void> deletePlaylist(@Path("id") long id);
 
+    @PUT("/playlists/{id}")
+    Call<Playlist> modifyPlaylist(@Path("id") long id, @Body Playlist playlist);
+
     @GET("playlists/{id}")
     Call<Playlist> getPlaylist(@Path("id") long id);
 
