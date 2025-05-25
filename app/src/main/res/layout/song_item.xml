@@ -5,10 +5,11 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
+    android:layout_marginStart="15dp"
     android:layout_marginTop="20dp"
-    android:layout_marginEnd="10dp"
+    android:layout_marginEnd="15dp"
     android:orientation="vertical"
+    android:background="#F1E9D6"
     android:padding="10dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent">
@@ -19,7 +20,8 @@
         android:layout_height="wrap_content"
         android:textColor="@color/hurean_dark"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:text="Nombre de la canción"/>
 
     <TextView
         android:id="@+id/song_url"
@@ -62,10 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/delete_song_button"
-            android:textColor="@color/background_light"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:backgroundTint="@color/hurean_dark" />
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
@@ -79,20 +78,14 @@
             style="@style/HureanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Añadir a Playlist"
-            android:textColor="@color/background_light"
-            android:textStyle="bold"
-            app:backgroundTint="@color/hurean_dark" />
+            android:text="Añadir a Playlist" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/delete_song_from_playlist_button"
             style="@style/HureanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Eliminar de Playlist"
-            android:textColor="@color/background_light"
-            android:textStyle="bold"
-            app:backgroundTint="@color/hurean_dark" />
+            android:text="Eliminar de Playlist" />
 
     </LinearLayout>
 

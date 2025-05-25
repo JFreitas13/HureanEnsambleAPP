@@ -72,7 +72,7 @@ public class AddSongView extends AppCompatActivity implements AddSongContract.Vi
 
     //crear el menu actionbar
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_songs_list, menu);
+        getMenuInflater().inflate(R.menu.actionbar_comun, menu);
         return true;
     }
 
@@ -92,6 +92,10 @@ public class AddSongView extends AppCompatActivity implements AddSongContract.Vi
             return true;
         } else if (item.getItemId() == R.id.home){
             Intent intent = new Intent(this, HomepageView.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.userProfile) {
+            Intent intent = new Intent(this, UserProfileView.class);
             startActivity(intent);
             return true;
         }

@@ -5,24 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:backgroundTint="@color/background_medium"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="409dp"
+        android:layout_height="231dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:contentDescription="@string/imagen_anadir_cancion"
+        app:layout_constraintBottom_toTopOf="@+id/modifySongTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/add_song" />
+
+    <TextView
+        android:id="@+id/modifySongTitle"
+        android:layout_width="266dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="73dp"
+        android:text="MODIFICAR CANCIÓN"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/hurean_dark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="350dp"
             android:orientation="vertical"
+            android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,37 +53,27 @@
                 android:id="@+id/modifySongName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:text="@string/nombre_de_la_cancion"
-                android:autofillHints="" />
+                android:text="@string/nombre_de_la_cancion" />
 
             <EditText
                 android:id="@+id/modifyURL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:text="@string/link"
-                android:textColor="#000000"
-                tools:ignore="TextFields" />
+                android:text="@string/link" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnModifySong"
                 style="@style/HureanButton"
                 android:onClick="modifyButton"
-                android:text="@string/modificar_cancion"
-                android:textColor="#795548" />
+                android:text="@string/modificar_cancion"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCancelar"
                 style="@style/HureanButton"
                 android:onClick="cancelModifyButton"
-                android:text="@string/cancelar"
-                android:textColor="#795548" />
+                android:text="@string/cancelar"/>
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

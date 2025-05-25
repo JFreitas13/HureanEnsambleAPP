@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/userEventsTitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="30dp">
 
     <!-- Bienvenida -->
     <TextView
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Bienvenido, Usuario"
+        android:textColor="@color/hurean_dark"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
+        android:textStyle="bold" />
 
     <!-- Días para el próximo evento -->
-<!--    <TextView-->
-<!--        android:id="@+id/days_letf"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Faltan X días para tu próximo evento"-->
-<!--        android:textSize="18sp"-->
-<!--        android:layout_marginBottom="16dp"/>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/days_letf"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Faltan X días para tu próximo evento"-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:layout_marginBottom="16dp"/>-->
 
     <!-- Lista de eventos -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tus eventos:"
+        android:textColor="@color/hurean_dark"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/events_list"
+        android:id="@+id/rv_events_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
 </LinearLayout>

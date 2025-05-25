@@ -1,8 +1,12 @@
 package com.svalero.hureanensamble.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Event {
+/**
+ * Implementamos Serializable para poder pasar los objetos entre activities
+ */
+public class Event implements Serializable {
     private long id;
     private String eventDate;
     private String place;

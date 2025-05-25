@@ -10,100 +10,72 @@
         android:layout_width="409dp"
         android:layout_height="231dp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:contentDescription="@string/imagen_anadir_cancion"
-        app:layout_constraintBottom_toTopOf="@+id/addSongTitle"
+        app:layout_constraintBottom_toTopOf="@+id/addPlaylistsTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/anadir_cancion" />
+        app:srcCompat="@drawable/add_playlist" />
 
     <TextView
-        android:id="@+id/addSongTitle"
+        android:id="@+id/addPlaylistsTitle"
         android:layout_width="266dp"
         android:layout_height="53dp"
         android:layout_marginStart="73dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="300dp"
         android:layout_marginEnd="73dp"
-        android:text="AÑADIR PLAYLIST"
+        android:text="@string/anadir_playlist"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/hurean_dark"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/materialCardView"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:backgroundTint="@color/background_medium"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="350dp"
+        android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/addSongTitle">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
+        <EditText
+            android:id="@+id/editPlaylistName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre_de_la_playlist"
+            android:minHeight="48dp" />
 
-            <EditText
-                android:id="@+id/editPlaylistName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="Nombre de la Playlist"
-                android:inputType="textPersonName"
-                android:minHeight="48dp" />
+        <Spinner
+            android:id="@+id/spinner_users"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:isScrollContainer="true"
+            android:minHeight="48dp"
+            android:spinnerMode="dropdown" />
 
-            <Spinner
-                android:id="@+id/spinner_users"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:dropDownSelector="@color/background_light"
-                android:isScrollContainer="true"
-                android:minHeight="48dp"
-                android:spinnerMode="dropdown" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddPlaylist"
+            style="@style/HureanButton"
+            android:onClick="addButton"
+            android:text="@string/anadir" />
 
-<!--            <AutoCompleteTextView-->
-<!--                android:id="@+id/autocomplete_users"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:hint="Seleccionar cliente"-->
-<!--                android:inputType="text"-->
-<!--                android:completionThreshold="1"-->
-<!--                android:minHeight="48dp"-->
-<!--                android:layout_marginBottom="24dp" />-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelar"
+            style="@style/HureanButton"
+            android:onClick="cancelButton"
+            android:text="@string/cancelar" />
+    </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAddPlaylist"
-                style="@style/HureanButton"
-                android:onClick="addButton"
-                android:text="@string/anadir"
-                android:textColor="#795548" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCancelar"
-                style="@style/HureanButton"
-                android:onClick="cancelButton"
-                android:text="@string/cancelar"
-                android:textColor="#795548" />
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

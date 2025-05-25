@@ -6,10 +6,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Método para instanstanciar la libreria retrofit y consumir la API
- *
+ * Para la parte del código que se usa para instanciar el objeto que se comunicará con la API
  */
+
 public class HureanEnsambleAPI {
+
+    /**
+     * Método para instanstanciar la libreria retrofit y consumir la API
+     *
+     */
 
     //instanciar libreria Retrofit y consumir API
     public static HureanEnsambleApiInterface buildInstance() {

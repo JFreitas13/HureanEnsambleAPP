@@ -1,7 +1,10 @@
 package com.svalero.hureanensamble.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.svalero.hureanensamble.R;
+import com.svalero.hureanensamble.Util.UserSession;
 import com.svalero.hureanensamble.contract.AddPlaylistContract;
 import com.svalero.hureanensamble.domain.User;
 import com.svalero.hureanensamble.presenter.AddPlaylistPresenter;
@@ -23,7 +27,6 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
 
     private EditText editPlaylistName;
     private Spinner spinnerUsers;
-   // private AutoCompleteTextView autoCompleteUsers; //spinner con buscador
     private AddPlaylistPresenter presenter;
     private List<User> userList;
 
@@ -35,7 +38,6 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
         Log.d("add Playlist", "llamada desde addPlaylistView");
 
         editPlaylistName = findViewById(R.id.editPlaylistName);
-       // autoCompleteUsers = findViewById(R.id.autocomplete_users); //spinner con buscador
         spinnerUsers = findViewById(R.id.spinner_users);
 
         presenter = new AddPlaylistPresenter(this);
@@ -68,7 +70,7 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
 //        }
 
         presenter.addPlaylist(name, selectedUser);
-        finish();
+
     }
 
     public void cancelButton(View view) {
@@ -82,8 +84,6 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
         ArrayAdapter<User> adapter = new ArrayAdapter<User>(this,
                 android.R.layout.simple_spinner_item,
                 users) {
-//                android.R.layout.simple_dropdown_item_1line,
-//                users) {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -102,15 +102,13 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUsers.setAdapter(adapter);
-//        autoCompleteUsers.setAdapter(adapter);
 
     }
 
     @Override
     public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        finish();
-
+        finish(); //cierro despues del ok de la apo
     }
 
     @Override
@@ -118,4 +116,35 @@ public class AddPlaylistView extends AppCompatActivity implements AddPlaylistCon
         Toast.makeText(this, "Error: " + error, Toast.LENGTH_LONG).show();
     }
 
+    //crear el menu actionbar
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_comun, menu);
+        return true;
+    }
+
+    //logout
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.logout) {
+            //cierro session
+            UserSession session = new UserSession(this);
+            session.clear();
+
+            //Regirigo a la pantalla de Login
+            Intent intent = new Intent(this, LoginView.class);
+            // Establece flags para limpiar el historial de actividades y empezar una nueva tarea
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.home){
+            Intent intent = new Intent(this, HomepageView.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.userProfile) {
+            Intent intent = new Intent(this, UserProfileView.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
+    }
 }

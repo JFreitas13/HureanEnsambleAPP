@@ -1,5 +1,6 @@
 package com.svalero.hureanensamble.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,24 +14,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.hureanensamble.R;
 import com.svalero.hureanensamble.Util.UserSession;
+import com.svalero.hureanensamble.contract.DeleteUserContract;
 import com.svalero.hureanensamble.domain.Playlist;
-import com.svalero.hureanensamble.domain.Song;
+import com.svalero.hureanensamble.presenter.DeletePlaylistPresenter;
 import com.svalero.hureanensamble.view.ModifyPlaylistView;
-import com.svalero.hureanensamble.view.ModifySongView;
 import com.svalero.hureanensamble.view.PlaylistDetailView;
 
 import java.util.List;
 
-public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.PlaylistHolder> {
+public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.PlaylistHolder> implements DeleteUserContract.View {
 
     private Context context; // Activity en la que estamos
     private List<Playlist> playlistsList;
     private String userRol;
+    private DeletePlaylistPresenter presenter;
 
-    //1. constructor que creamos para pasarle los datos que queremos que pinte. El contexto y la lista
+    /**
+     * 1) Constructor que creamos para pasarle los datos que queremos que pinte
+     * el contexto y la lista de playlist
+     */
     public PlaylistAdapter(Context context, List<Playlist> dataList){
         this.context = context;
         this.playlistsList = dataList;
+        presenter = new DeletePlaylistPresenter(this);
 
         //Sesion de usuario para identificar el ROl
         UserSession session = new UserSession(context);
@@ -41,6 +47,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
         return context;
     }
 
+    /**
+     * Metodo con el que Android va a inflar, va a crear cada estructura del layout donde irán los datos de cada evento.
+     */
     @Override
     public PlaylistAdapter.PlaylistHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -48,28 +57,58 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
         return new PlaylistHolder(view); //Creamos un holder para cada una de las estructuras que infla el layout
     }
 
-    //3.metodo para hacer que cada valor de la lista corresponda a los valores y pintarlos en cad elemento del layout
+    /**
+     * Metodo que estamos obligados para hacer corresponder los valores de la lista y pintarlo en cada elemento de layout
+     * es para poder recorrer en el bucle por cada elemento de la lista y poder pintarlo
+     */
     @Override
     public void onBindViewHolder(PlaylistHolder holder, int position) {
 
-        Playlist playlist = playlistsList.get(position); //prueba ver detail de playlist
-        holder.playlistName.setText(playlistsList.get(position).getName());
-
+        holder.playlistName.setText(playlistsList.get(position).getName()); //nombre de la playlist
     }
 
+    /**
+     * Metodo que estamos obligados a hacer para que devuelva el número de elementos y android pueda hacer sus calculos y pintar en base a esos calculos
+     */
     @Override
     public int getItemCount() {
         return playlistsList.size();
     }
 
+    @Override
+    public void showError(String errorMessage) {
+        new AlertDialog.Builder(context)
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setPositiveButton("Aceptar", null)
+                .show();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        new AlertDialog.Builder(context)
+                .setTitle("Información")
+                .setMessage(message)
+                .setPositiveButton("Aceptar", null)
+                .show();
+
+    }
+
+    /**
+     * 5) Holder son las estructuras que contienen los datos y los rellenan luego
+     * Creamos todos los componentes que tenemos
+     */
     public class PlaylistHolder extends RecyclerView.ViewHolder{
         public TextView playlistName;
         public Button seePlaylistDetailButton;
         public Button modifyPlaylistButton;
+        public Button deletePlaylistButton;
 
-        public View parentView;
+        public View parentView; //vista padre - como el recyclerView
 
-        //constructor del holder
+        /**
+         * 5) Consturctor del Holder
+         */
         public PlaylistHolder(View view) {
             super(view);
             parentView = view; //guardamos el componente padre
@@ -77,30 +116,33 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
             playlistName = view.findViewById(R.id.playlist_name);
             seePlaylistDetailButton = view.findViewById(R.id.see_playlist_button);
             modifyPlaylistButton = view.findViewById(R.id.modify_playlist_button);
+            deletePlaylistButton = view.findViewById(R.id.delete_playlist_button);
 
             //pulsando estos botones llamamos al metodo correspondiente
+            //control de visibilidad de botones según el rol
             if ("admin".equalsIgnoreCase(userRol)) {
-                modifyPlaylistButton.setVisibility(View.VISIBLE);
+                modifyPlaylistButton.setVisibility(View.VISIBLE); //modificar
+                deletePlaylistButton.setVisibility(View.VISIBLE); //eliminar
             } else {
                 modifyPlaylistButton.setVisibility(View.GONE);
+                deletePlaylistButton.setVisibility(View.GONE);
             }
 
             seePlaylistDetailButton.setOnClickListener(v -> seePlaylistDetail(getAdapterPosition()));
             modifyPlaylistButton.setOnClickListener(v -> modifyPlaylist(getAdapterPosition()));
+            deletePlaylistButton.setOnClickListener(v -> deletePlaylist(getAdapterPosition()));
 
         }
 
+        //metodo para el boton de ver la playlist
         private void seePlaylistDetail(int position) {
-            Playlist playlist = playlistsList.get(position);
-
             Intent intent = new Intent(context, PlaylistDetailView.class);
             intent.putExtra("playlist_id", playlistsList.get(position).getId());
-            //intent.putExtra("playlist_name", playlist.getName());
-            // Aquí puedes añadir más extras si ya tienes el usuario/evento cargado
+
             context.startActivity(intent);
         }
 
-        //metodo boton modificar
+        //metodo botón de modificar playlist
         private void modifyPlaylist(int position) {
             Playlist playlist = playlistsList.get(position);
 
@@ -108,5 +150,29 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
             intent.putExtra("playlist", playlist);
             context.startActivity(intent);
         }
+
+        //metodo boton de eliminar playlist
+        private void deletePlaylist(int position) {
+            //Dialogo para confirmar que se quiere eliminar
+            AlertDialog.Builder builder = new AlertDialog.Builder(context); //le pasamos el contexto donde estamos
+            builder.setMessage(R.string.are_you_sure_delete_playlist_message)
+                    .setTitle(R.string.delete_playlist_title)
+                    .setPositiveButton("Si", (dialog, id) -> { //añadir boton de si
+                        Playlist playlist = playlistsList.get(position);   // Obtenemos la canción a eliminar
+                        presenter.deletePlaylist(playlist.getId(), position);           // Llamamos al presenter para que inicie el borrado en la API
+
+//                        playlistsList.remove(position);
+//                        notifyItemRemoved(position);
+                    })
+                    .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //boton del no
+            AlertDialog dialog = builder.create();
+            dialog.show(); //sin esto no se muestra el dialogo
+        }
+    }
+
+    //eliminar de la lista cuando recibo el ok de la API
+    public void removePlaylist(int position) {
+        playlistsList.remove(position);
+        notifyItemRemoved(position);
     }
 }

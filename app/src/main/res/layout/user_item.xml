@@ -5,29 +5,32 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
+    android:layout_marginStart="15dp"
     android:layout_marginTop="20dp"
-    android:layout_marginEnd="10dp"
+    android:layout_marginEnd="15dp"
+    android:background="#F1E9D6"
     android:orientation="vertical"
     android:padding="10dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/hurean_dark"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Nombre Usuario"/>
 
-        <TextView
-            android:id="@+id/user_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/hurean_dark"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/user_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Email"/>
 
 
     <LinearLayout
@@ -41,21 +44,14 @@
             style="@style/HureanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/modify_song_button"
-            android:textColor="@color/background_light"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/hurean_dark" />
+            android:text="@string/modify_song_button" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/delete_user_button"
             style="@style/HureanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/delete_song_button"
-            android:textColor="@color/background_light"
-            android:textStyle="bold"
-            app:backgroundTint="@color/hurean_dark" />
+            android:text="@string/delete_song_button" />
 
     </LinearLayout>
 

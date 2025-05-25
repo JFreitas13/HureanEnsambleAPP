@@ -34,14 +34,16 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
     private Context context; // Activity en la que estamos
     private List<Song> songList;
     private List<Song> filteredSongList;
-    private View snackBarView;
     private DeleteSongPresenter presenter;
     private String userRol;
     private Long playlistId;
     private DeleteSongFromPlaylistPresenter deleteSongFromPlaylistPresenter;
 
 
-    //1. constructor que creamos para pasarle los datos que queremos que pinte. El contexto y la lista
+    /**
+     * 1) Constructor que creamos para pasarle los datos que queremos que pinte
+     * el contexto y la lista de canciones
+     */
     public SongAdapter(Context context, List<Song> dataList, Long playlistId) {
         this.context = context;
         this.filteredSongList = new ArrayList<>(dataList); //lista de canciones
@@ -65,8 +67,9 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
         return context;
     }
 
-    //2. creamos la estructura de cada layout. Vista detalle de cada cancion
-    // Metodo con el que Android va a inflar, va a crear cada estructura del layout donde irán los datos de cada cancion. Vista detalle de cada cancion
+    /**
+     * Metodo con el que Android va a inflar, va a crear cada estructura del layout donde irán los datos de cada cancion.
+     */
     @Override
     public SongHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -74,14 +77,17 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
         return new SongHolder(view); //Creamos un holder para cada una de las estructuras que infla el layout
     }
 
-    //3.metodo para hacer que cada valor de la lista corresponda a los valores y pintarlos en cad elemento del layout
+    /**
+     * Metodo que estamos obligados para hacer corresponder los valores de la lista y pintarlo en cada elemento de layout
+     * es para poder recorrer en el bucle por cada elemento de la lista y poder pintarlo
+     */
     @Override
     public void onBindViewHolder(SongHolder holder, int position) {
 
         Song song = filteredSongList.get(position);
 
-        holder.songName.setText(filteredSongList.get(position).getName());
-        holder.songUrl.setText(String.valueOf(filteredSongList.get(position).getUrl()));
+        holder.songName.setText(filteredSongList.get(position).getName()); //nombre de la cancion
+        holder.songUrl.setText(String.valueOf(filteredSongList.get(position).getUrl())); //link de youtube
 
         //extraer miniatura de video de youtube
         String videoId = extractYoutubeId(song.getUrl());
@@ -97,11 +103,12 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
                 context.startActivity(intent);
             });
         }
-
     }
 
 
-    //4.metodo para contar el numero de elementos
+    /**
+     * Metodo que estamos obligados a hacer para que devuelva el número de elementos y android pueda hacer sus calculos y pintar en base a esos calculos
+     */
     @Override
     public int getItemCount() {
         return filteredSongList.size();
@@ -131,7 +138,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
 
     }
 
-    //5.Creamos todos los componentes que tenemos
+    /**
+     * 5) Holder son las estructuras que contienen los datos y los rellenan luego
+     * Creamos todos los componentes que tenemos
+     */
     public class SongHolder extends RecyclerView.ViewHolder {
         public TextView songName;
         public TextView songUrl;
@@ -139,11 +149,13 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
         public Button modifySongButton;
         public Button deleteSongButton;
         public Button addSongToPlaylistButton;
-        private Button deleteSongFromPlaylistButton;
+        public Button deleteSongFromPlaylistButton;
 
         public View parentView; //vista padre: recyclerView
 
-        //constructor del holder
+        /**
+         * 5) Consturctor del Holder
+         */
         public SongHolder(View view) {
             super(view);
             parentView = view; //guardamos el componente padre
@@ -168,7 +180,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
 
 
             if (playlistId != null) {
-                //si tengo id de playlis, es porque estoy en playlistDetail y entonces quiero que se vena el boton de eliminar pero no el de añadir
+                //si tengo id de playlis, es porque estoy en playlistDetail y entonces quiero que se vea el boton de eliminar pero no el de añadir
                 deleteSongFromPlaylistButton.setVisibility(View.VISIBLE);
                 addSongToPlaylistButton.setVisibility(View.GONE);
             } else {
@@ -181,7 +193,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             deleteSongButton.setOnClickListener(v -> deleteSong(getAdapterPosition()));
             addSongToPlaylistButton.setOnClickListener(v -> addSongToPlaylist(getAdapterPosition()));
             deleteSongFromPlaylistButton.setOnClickListener(v -> deleteSongFromPlaylist(getAdapterPosition()));
-            //deleteSongFromPlaylistButton.setOnClickListener(v -> deleteSongFromPlaylist(getAdapterPosition()));
 
         }
 
@@ -213,7 +224,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             dialog.show(); //sin esto no se muestra el dialogo
         }
 
-        ;
 
         //metodo boton modificar
         private void addSongToPlaylist(int position) {
@@ -224,6 +234,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             context.startActivity(intent);
         }
 
+        //metodo para eliminar cancion de una playlist
         private void deleteSongFromPlaylist(int position) {
             //Dialogo para confirmar que se quiere eliminar
             AlertDialog.Builder builder = new AlertDialog.Builder(context); //le pasamos el contexto donde estamos
@@ -240,10 +251,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             AlertDialog dialog = builder.create();
             dialog.show(); //sin esto no se muestra el dialogo
 
-//            Song song = filteredSongList.get(position);
-//            deleteSongFromPlaylistPresenter.deleteSongFromPlaylist(playlistId, song.getId());
-//            filteredSongList.remove(position);
-//            notifyItemRemoved(position);
         }
     }
 }

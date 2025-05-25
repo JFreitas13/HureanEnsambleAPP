@@ -23,11 +23,15 @@ import retrofit2.http.Path;
 
 public interface HureanEnsambleApiInterface {
 
-    //login
+    /**
+     * Login
+     */
     @POST("/login")
     Call<User> login(@Body Login login);
 
-    //songs
+    /**
+     * Songs
+     */
     @GET("/songs")
     Call<List<Song>> getSongs();
 
@@ -40,7 +44,9 @@ public interface HureanEnsambleApiInterface {
     @PUT("/songs/{id}")
     Call<Song> modifySong(@Path("id") long id, @Body Song song);
 
-    //product
+    /**
+     * Products
+     */
     @GET("/products")
     Call<List<Product>> getProducts();
 
@@ -53,7 +59,9 @@ public interface HureanEnsambleApiInterface {
     @PUT("/products/{id}")
     Call<Product> modifyProduct(@Path("id") long id, @Body Product product);
 
-    //playlist
+    /**
+     * Playlists
+     */
     @GET("/playlists")
     Call<List<Playlist>> getPlaylists();
 
@@ -78,7 +86,9 @@ public interface HureanEnsambleApiInterface {
     @GET("/users/{id}/playlists")
     Call<List<Playlist>> getPlaylistByUserId(@Path("id") long userId);
 
-    //user
+    /**
+     * Users
+     */
     @GET("/users")
     Call<List<User>> getUsers();
 
@@ -91,7 +101,9 @@ public interface HureanEnsambleApiInterface {
     @PUT("/users/{id}")
     Call<User> modifyUser(@Path("id") long id, @Body User user);
 
-    //event
+    /**
+     * Events
+     */
     @GET("/events")
     Call<List<Event>> getEvents();
 

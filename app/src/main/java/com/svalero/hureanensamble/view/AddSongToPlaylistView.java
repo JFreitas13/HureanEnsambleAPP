@@ -1,6 +1,9 @@
 package com.svalero.hureanensamble.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -31,7 +34,7 @@ public class AddSongToPlaylistView extends AppCompatActivity implements AddSongT
 
         // Vincular vistas
         spinnerPlaylists = findViewById(R.id.spinner_users);
-        addSongToPlaylistButton = findViewById(R.id.btn_add_song);
+        addSongToPlaylistButton = findViewById(R.id.btnAddSongToPlaylist);
 
         // Inicializar presentador
         presenter = new AddSongToPlaylistPresenter( this);
@@ -94,5 +97,37 @@ public class AddSongToPlaylistView extends AppCompatActivity implements AddSongT
     public void showSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();  // Muestra confirmación
         finish();  // Cierra la actividad
+    }
+
+    //crear el menu actionbar
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_comun, menu);
+        return true;
+    }
+
+    //logout
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.logout) {
+            //cierro session
+            UserSession session = new UserSession(this);
+            session.clear();
+
+            //Regirigo a la pantalla de Login
+            Intent intent = new Intent(this, LoginView.class);
+            // Establece flags para limpiar el historial de actividades y empezar una nueva tarea
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.home){
+            Intent intent = new Intent(this, HomepageView.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.userProfile) {
+            Intent intent = new Intent(this, UserProfileView.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 }

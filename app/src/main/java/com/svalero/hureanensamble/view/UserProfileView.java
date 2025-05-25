@@ -52,7 +52,7 @@ public class UserProfileView extends AppCompatActivity implements UserProfileCon
     private void initializeRecyclerView() {
         eventList = new ArrayList<>();
 
-        RecyclerView recyclerView = findViewById(R.id.events_list);
+        RecyclerView recyclerView = findViewById(R.id.rv_events_list);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

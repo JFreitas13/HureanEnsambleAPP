@@ -5,14 +5,13 @@ import android.util.Log;
 
 import com.svalero.hureanensamble.api.HureanEnsambleAPI;
 import com.svalero.hureanensamble.api.HureanEnsambleApiInterface;
-import com.svalero.hureanensamble.contract.DeleteSongContract;
 import com.svalero.hureanensamble.contract.DeleteUserContract;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DeleteUSerModel implements DeleteUserContract.Model {
+public class DeleteUserModel implements DeleteUserContract.Model {
 
     @Override
     public void deleteUser(long userId, OnDeleteUserListener listener) {

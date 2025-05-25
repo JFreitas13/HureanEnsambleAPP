@@ -39,4 +39,14 @@
     <string name="modify_user_title">Modificar usuario</string>
     <string name="user_profile">user_profile</string>
     <string name="imagen_anadir_cancion">imagen_anadir_cancion</string>
+    <string name="are_you_sure_delete_playlist_message">¿Estás seguro que quieres eliminar la playlist?</string>
+    <string name="delete_playlist_title">Eliminar Playlist</string>
+    <string name="anadir_playlist">AÑADIR PLAYLIST</string>
+    <string name="nombre_de_la_playlist">Nombre de la Playlist</string>
+    <string name="anadir_evento_title">AÑADIR EVENTO</string>
+    <string name="imagen_anadir_evento">imagen_anadir_evento</string>
+    <string name="lugar_del_evento">Lugar del evento</string>
+    <string name="nombre_del_usuario_evento">Nombre del usuario</string>
+    <string name="fecha_del_evento">Fecha del evento</string>
+    <string name="playlist_asociada">Playlist asociada</string>
 </resources>

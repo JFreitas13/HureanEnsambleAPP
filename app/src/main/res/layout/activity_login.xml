@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".view.LoginView">
 
     <ImageView
@@ -31,16 +32,14 @@
 
         <EditText
             android:id="@+id/emailEditText"
-            style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
             android:hint="@string/email"
             android:inputType="text"
             android:minHeight="48dp"
             android:selectAllOnFocus="false"
             android:singleLine="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            tools:ignore="TextFields" />
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -51,16 +50,64 @@
             android:minHeight="48dp"
             android:textColorHint="#757575" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/loginButton"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/HureanButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="#A89A6D"
             android:onClick="loginButton"
             android:text="@string/iniciar_sesion" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="362dp"
+        android:layout_height="76dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            app:srcCompat="@drawable/premio_2021" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            app:srcCompat="@drawable/premio_2022" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            app:srcCompat="@drawable/premio_2023" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            app:srcCompat="@drawable/premio_2024" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            app:srcCompat="@drawable/premio_2025" />
     </LinearLayout>
 
 

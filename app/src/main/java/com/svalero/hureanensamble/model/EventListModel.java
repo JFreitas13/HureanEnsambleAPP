@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class EventListModel implements EventListContract.Model {
 
-    private Context context;
+    private Context context; //para poder pasarle el contexto de la aplicacion
 
     public EventListModel(Context context) {
         this.context = context;
@@ -31,8 +31,8 @@ public class EventListModel implements EventListContract.Model {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                 Log.d("events", "llamada desde el model OK");
-                List<Event> users = response.body();
-                listener.onLoadEventSuccess(users);
+                List<Event> users = response.body(); //Metemos la respuesta en una lista
+                listener.onLoadEventSuccess(users); //recibimos la lista por el listener
             }
 
             @Override
@@ -40,9 +40,8 @@ public class EventListModel implements EventListContract.Model {
                 Log.d("events", "llamada desde el model KO");
                 t.printStackTrace();
                 String message = "Error al invocar la operación";
-                listener.onLoadEventError(message);
+                listener.onLoadEventError(message); //recibimos los mensajes de error por listener
             }
         });
-
     }
 }

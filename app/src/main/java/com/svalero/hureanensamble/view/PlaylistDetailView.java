@@ -24,6 +24,7 @@ import com.svalero.hureanensamble.Util.UserSession;
 import com.svalero.hureanensamble.adapter.SongAdapter;
 import com.svalero.hureanensamble.contract.DeleteSongFromPlaylistContract;
 import com.svalero.hureanensamble.contract.PlaylistDetailContract;
+import com.svalero.hureanensamble.domain.Event;
 import com.svalero.hureanensamble.domain.Playlist;
 import com.svalero.hureanensamble.domain.Song;
 import com.svalero.hureanensamble.presenter.DeleteSongFromPlaylistPresenter;
@@ -32,6 +33,7 @@ import com.svalero.hureanensamble.presenter.PlaylistDetailPresenter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class PlaylistDetailView extends AppCompatActivity implements PlaylistDetailContract.View, DeleteSongFromPlaylistContract.View {
 
@@ -49,8 +51,8 @@ public class PlaylistDetailView extends AppCompatActivity implements PlaylistDet
         setContentView(R.layout.activity_palylist_detail_view);
 
         playlistNameText = findViewById(R.id.playlist_name_text);
-        playlistUserText = findViewById(R.id.playlist_user_text);
-        playlistEventText = findViewById(R.id.playlist_event_text);
+//        playlistUserText = findViewById(R.id.playlist_user_text);
+//        playlistEventText = findViewById(R.id.playlist_event_text);
         songListView = findViewById(R.id.song_list);
 
         downloadPdfButton = findViewById(R.id.download_pdf_button);
@@ -75,7 +77,7 @@ public class PlaylistDetailView extends AppCompatActivity implements PlaylistDet
     @Override
     public void showPlaylistDetail(Playlist playlist) {
         this.playlist = playlist;
-        playlistNameText.setText("Playlist: " + playlist.getName());
+        playlistNameText.setText(playlist.getName());
 
 //        User user = playlist.getPlaylistUser();
 //        playlistUserText.setText("Usuario: " + (user != null ? user.getName() : "Desconocido"));

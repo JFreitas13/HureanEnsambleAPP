@@ -14,10 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.hureanensamble.R;
 import com.svalero.hureanensamble.contract.DeleteUserContract;
-import com.svalero.hureanensamble.domain.Song;
 import com.svalero.hureanensamble.domain.User;
 import com.svalero.hureanensamble.presenter.DeleteUserPresenter;
-import com.svalero.hureanensamble.view.ModifySongView;
 import com.svalero.hureanensamble.view.ModifyUserView;
 
 import java.util.List;
@@ -60,11 +58,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> im
 
     @Override
     public void showError(String errorMessage) {
+        new AlertDialog.Builder(context)
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setPositiveButton("Aceptar", null)
+                .show();
 
     }
 
     @Override
     public void showMessage(String message) {
+        new AlertDialog.Builder(context)
+                .setTitle("Información")
+                .setMessage(message)
+                .setPositiveButton("Aceptar", null)
+                .show();
 
     }
 
@@ -117,6 +125,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> im
                     .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //boton del no
             AlertDialog dialog = builder.create();
             dialog.show(); //sin esto no se muestra el dialogo
-        };
+        }
     }
 }

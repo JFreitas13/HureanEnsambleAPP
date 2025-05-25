@@ -3,6 +3,8 @@ package com.svalero.hureanensamble.view;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -11,6 +13,7 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.svalero.hureanensamble.R;
+import com.svalero.hureanensamble.Util.UserSession;
 import com.svalero.hureanensamble.contract.ModifyUserContract;
 import com.svalero.hureanensamble.domain.User;
 import com.svalero.hureanensamble.presenter.ModifyUserPresenter;
@@ -57,7 +60,7 @@ public class ModifyUserView extends AppCompatActivity implements ModifyUserContr
 
     //boton cancelar y volver atras
     public void cancelModifyButton(View view) {
-        getOnBackPressedDispatcher();
+        getOnBackPressedDispatcher().onBackPressed();
     }
 
     //datos nuevos
@@ -104,5 +107,33 @@ public class ModifyUserView extends AppCompatActivity implements ModifyUserContr
     @Override
     public void showMessage(String message) {
 
+    }
+
+    //crear el menu actionbar
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_comun, menu);
+        return true;
+    }
+
+    //logout
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.logout) {
+            //cierro session
+            UserSession session = new UserSession(this);
+            session.clear();
+
+            //Regirigo a la pantalla de Login
+            Intent intent = new Intent(this, LoginView.class);
+            // Establece flags para limpiar el historial de actividades y empezar una nueva tarea
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.home){
+            Intent intent = new Intent(this, HomepageView.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 }

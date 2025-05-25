@@ -12,14 +12,14 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:contentDescription="@string/imagen_anadir_cancion"
-        app:layout_constraintBottom_toTopOf="@+id/addSongTitle"
+        app:layout_constraintBottom_toTopOf="@+id/modifySongTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/anadir_cancion" />
+        app:srcCompat="@drawable/add_song" />
 
     <TextView
-        android:id="@+id/addSongTitle"
+        android:id="@+id/modifySongTitle"
         android:layout_width="266dp"
         android:layout_height="53dp"
         android:layout_marginStart="73dp"
@@ -30,31 +30,19 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/hurean_dark"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/materialCardView"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:backgroundTint="@color/background_medium"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/addSongTitle">
-
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="350dp"
             android:orientation="vertical"
+            android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,10 +52,7 @@
                 android:id="@+id/modifyPlaylistName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:ems="10"
                 android:hint="Nombre de la Playlist"
-                android:inputType="textPersonName"
                 android:minHeight="48dp" />
 
             <Spinner
@@ -75,7 +60,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:dropDownSelector="@color/background_light"
                 android:isScrollContainer="true"
                 android:minHeight="48dp"
                 android:spinnerMode="dropdown" />
@@ -84,16 +68,13 @@
                 android:id="@+id/btnModifyPlaylist"
                 style="@style/HureanButton"
                 android:onClick="modifyButton"
-                android:text="@string/anadir"
-                android:textColor="#795548" />
+                android:text="Modificar" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCancelar"
                 style="@style/HureanButton"
-                android:onClick="cancelButton"
-                android:text="@string/cancelar"
-                android:textColor="#795548" />
+                android:onClick="cancelModifyButton"
+                android:text="@string/cancelar" />
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

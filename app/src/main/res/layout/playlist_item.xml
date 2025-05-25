@@ -5,19 +5,14 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
+    android:layout_marginStart="15dp"
     android:layout_marginTop="20dp"
-    android:layout_marginEnd="10dp"
+    android:layout_marginEnd="15dp"
     android:orientation="vertical"
     android:padding="10dp"
+    android:background="#F1E9D6"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent">
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/book_id"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:textSize="16sp" />-->
 
     <TextView
         android:id="@+id/playlist_name"
@@ -25,7 +20,8 @@
         android:layout_height="wrap_content"
         android:textColor="@color/hurean_dark"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:text="Nombre de la Playlist"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,22 +34,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/modify_song_button"
-            android:textColor="@color/background_light"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:backgroundTint="@color/hurean_dark" />
+            android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/delete_plsylist_button"
+            android:id="@+id/delete_playlist_button"
             style="@style/HureanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/delete_song_button"
-            android:textColor="@color/background_light"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:backgroundTint="@color/hurean_dark" />
+            android:visibility="gone"/>
     </LinearLayout>
 
     <LinearLayout
@@ -67,11 +56,7 @@
             style="@style/HureanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ver_playlist"
-            android:textColor="@color/background_light"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/hurean_dark" />
+            android:text="@string/ver_playlist"/>
     </LinearLayout>
 
 </LinearLayout>

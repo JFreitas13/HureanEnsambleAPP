@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Descargar PDF de canciones"
-            android:textColor="@color/background_light"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
 
@@ -21,28 +21,32 @@
             android:id="@+id/playlist_name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+            android:paddingTop="15dp"
+            android:text="Nombre de la Playlist"
+            android:textColor="@color/hurean_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/playlist_user_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/playlist_user_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp" />-->
 
-        <TextView
-            android:id="@+id/playlist_event_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/playlist_event_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp" />-->
 
         <TextView
             android:id="@+id/songs_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Canciones:"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"/>
+            android:textColor="@color/hurean_dark"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/song_list"

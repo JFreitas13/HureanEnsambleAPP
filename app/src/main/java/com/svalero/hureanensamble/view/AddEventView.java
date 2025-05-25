@@ -1,7 +1,10 @@
 package com.svalero.hureanensamble.view;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -11,11 +14,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.svalero.hureanensamble.R;
+import com.svalero.hureanensamble.Util.UserSession;
 import com.svalero.hureanensamble.contract.AddEventContract;
 import com.svalero.hureanensamble.domain.Event;
 import com.svalero.hureanensamble.domain.Playlist;
@@ -47,10 +50,10 @@ public class AddEventView extends AppCompatActivity implements AddEventContract.
         // Vinculación de vistas
         eventDateEditText = findViewById(R.id.edit_event_date);
         eventPlaceEditText = findViewById(R.id.edit_event_place);
-        paidCheckbox = findViewById(R.id.checkbox_paid);
+       //paidCheckbox = findViewById(R.id.checkbox_paid);
         userSpinner = findViewById(R.id.spinner_users);
         playlistSpinner = findViewById(R.id.spinner_playlists);
-        addButton = findViewById(R.id.btn_add_event);
+        addButton = findViewById(R.id.btnAddEvent);
 
         // Inicializar presenter y cargar usuarios
         presenter = new AddEventPresenter(this);
@@ -184,6 +187,38 @@ public class AddEventView extends AppCompatActivity implements AddEventContract.
     @Override
     public void showError(String error) {
 
+    }
+
+    //crear el menu actionbar
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_comun, menu);
+        return true;
+    }
+
+    //logout
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.logout) {
+            //cierro session
+            UserSession session = new UserSession(this);
+            session.clear();
+
+            //Regirigo a la pantalla de Login
+            Intent intent = new Intent(this, LoginView.class);
+            // Establece flags para limpiar el historial de actividades y empezar una nueva tarea
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.home){
+            Intent intent = new Intent(this, HomepageView.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.userProfile) {
+            Intent intent = new Intent(this, UserProfileView.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 
 //    // Mostrar mensaje de éxito

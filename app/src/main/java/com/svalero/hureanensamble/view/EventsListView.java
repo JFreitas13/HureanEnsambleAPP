@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,24 +23,27 @@ import java.util.List;
 
 public class EventsListView extends AppCompatActivity implements EventListContract.View {
 
-    private List<Event> eventList;
+    private List<Event> eventList; //Creamos la lista que recibiremos
     private EventAdapter adapter;
-    private EventsListPresenter presenter;
+    private EventsListPresenter presenter; //declaramos el presenter para solicitar los datos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list_view);
 
-        presenter = new EventsListPresenter(this);
+        presenter = new EventsListPresenter(this); //instanciamos el presenter y le pasamos el contexto
 
-        initializeRecyclerView();
+        initializeRecyclerView(); //inicializamos el RecyclerView
     }
 
+    /**
+     * Método para inicializar el RecyclerView
+     */
     private void initializeRecyclerView() {
         eventList = new ArrayList<>();
 
-        RecyclerView recyclerView = findViewById(R.id.events_list);
+        RecyclerView recyclerView = findViewById(R.id.rv_events_list);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -53,7 +57,7 @@ public class EventsListView extends AppCompatActivity implements EventListContra
         super.onResume();
 
         Log.d("events", "Llamada desde EventListView");
-        presenter.loadAllEvents();
+        presenter.loadAllEvents(); //le decimos al presenter cuando vuelve del resume que carge xtodo
     }
 
     @Override
@@ -66,6 +70,7 @@ public class EventsListView extends AppCompatActivity implements EventListContra
 
     @Override
     public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
     }
 
@@ -85,6 +90,7 @@ public class EventsListView extends AppCompatActivity implements EventListContra
         return true;
     }
 
+    //opciones del actionbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //logout
@@ -99,16 +105,17 @@ public class EventsListView extends AppCompatActivity implements EventListContra
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             return true;
-            //homepage
+        //homepage
         } else if (item.getItemId() == R.id.home){
             Intent intent = new Intent(this, HomepageView.class);
             startActivity(intent);
             return true;
-            //user profile
+        //user profile
         } else if (item.getItemId() == R.id.userProfile) {
             Intent intent = new Intent(this, UserProfileView.class);
             startActivity(intent);
             return true;
+        //crear evento
         } else if (item.getItemId() == R.id.add_event) {
             Intent intent = new Intent(this, AddEventView.class);
             startActivity(intent);

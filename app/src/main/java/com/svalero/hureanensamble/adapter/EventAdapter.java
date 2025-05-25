@@ -24,6 +24,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
     private boolean showUserName;  // flag para mostrar o no el usuario
 
 
+    /**
+     * 1) Constructor que creamos para pasarle los datos que queremos que pinte
+     * el contexto y la lista de eventos
+     */
+
     public EventAdapter(Context context, List<Event> eventList, boolean showUserName) {
         this.context = context;
         this.eventList = eventList;
@@ -34,6 +39,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         return context;
     }
 
+    /**
+     * Metodo con el que Android va a inflar, va a crear cada estructura del layout donde irán los datos de cada evento.
+     */
     @Override
     public EventHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -41,23 +49,26 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         return new EventHolder(view);
     }
 
+    /**
+     * Metodo que estamos obligados para hacer corresponder los valores de la lista y pintarlo en cada elemento de layout
+     * es para poder recorrer en el bucle por cada elemento de la lista y poder pintarlo
+     */
     @Override
     public void onBindViewHolder(@NonNull EventHolder holder, int position) {
 
-        holder.eventPlace.setText(eventList.get(position).getPlace());
-        holder.eventDate.setText(eventList.get(position).getEventDate());
+        holder.eventPlace.setText(eventList.get(position).getPlace()); //lugar del evento
+        holder.eventDate.setText(eventList.get(position).getEventDate()); //fecha del evento
 
-        Event event = eventList.get(position);
-
-        //Usuario
+        Event event = eventList.get(position); //obtenemos el evento actual
+        //mostrar o no usuario
         if (showUserName && event.getEventUser() != null) {
-            holder.userName.setText(event.getEventUser().getName());
+            holder.userName.setText("Cliente: " + event.getEventUser().getName());
             holder.userName.setVisibility(View.VISIBLE);
         } else {
             holder.userName.setVisibility(View.GONE);
         }
 
-        //Playlist
+        //Mostrar playlist asociada al evento
         Playlist playlist = event.getEventPlaylist();
         if (playlist != null) {
             holder.eventPlaylist.setText(playlist.getName());
@@ -73,84 +84,39 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         }
     }
 
+    /**
+     * Metodo que estamos obligados a hacer para que devuelva el número de elementos y android pueda hacer sus calculos y pintar en base a esos calculos
+     */
     @Override
     public int getItemCount() {
         return eventList.size();
     }
 
 
+    /**
+     * 5) Holder son las estructuras que contienen los datos y los rellenan luego
+     * Creamos todos los componentes que tenemos
+     */
     public class EventHolder extends RecyclerView.ViewHolder {
-        TextView eventPlace;
-        TextView userName;
-        TextView eventDate;
-        TextView eventPlaylist;
+        public TextView eventPlace;
+        public TextView userName;
+        public TextView eventDate;
+        public TextView eventPlaylist;
 
-        public EventHolder(@NonNull View itemView) {
-            super(itemView);
-            eventPlace = itemView.findViewById(R.id.event_place);
-            userName = itemView.findViewById(R.id.user_name);
-            eventDate = itemView.findViewById(R.id.event_date);
-            eventPlaylist = itemView.findViewById(R.id.event_playlist);
+        public View parentView; //vista padre - como el recyclerView
+
+        /**
+         * 5) Consturctor del Holder
+         */
+        public EventHolder(@NonNull View view) {
+            super(view); //Vista padre
+            parentView = view;
+
+            eventPlace = view.findViewById(R.id.event_place);
+            userName = view.findViewById(R.id.user_name);
+            eventDate = view.findViewById(R.id.event_date);
+            eventPlaylist = view.findViewById(R.id.event_playlist);
         }
     }
 }
 
-//        // Nombre del usuario (oculto por defecto, visible si se desea mostrar)
-//        if (event.getEventUser() != null) {
-//            holder.userName.setText("Usuario: " + event.getEventUser().getName());
-//        } else {
-//            holder.userName.setText("Usuario desconocido");
-//        }
-//
-//import android.content.Context;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//
-//import androidx.annotation.NonNull;
-//import androidx.recyclerview.widget.RecyclerView;
-//
-//import com.svalero.hureanensamble.R;
-//import com.svalero.hureanensamble.domain.Event;
-//
-//import java.util.List;
-//
-//public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
-//
-//    private Context context; // Activity en la que estamos
-//    private List<Event> events;
-//    private boolean showUsers;
-//
-//    public EventAdapter(Context context, List<Event> events, boolean showUser) {
-//        this.events = events;
-//        this.showUsers = showUser;
-//    }
-//
-//    public Context getContext() {
-//        return context;
-//    }
-//
-//    @Override
-//    public EventAdapter.EventHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View view = LayoutInflater.from(parent.getContext())
-//                .inflate(R.layout.event_item, parent, false); //el layout song_item de cada cancion
-//        return new EventHolder(view); //Creamos un holder para cada una de las estructuras que infla el layout
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(EventViewHolder holder, int position) {
-//        Event event = events.get(position);
-//        holder.eventName.setText(event.getPlace());
-//        holder.eventDate.setText("Fecha: " + event.getEventDate());
-//        //holder.playlistEvent.setText("Playlist: " + event.getEventPlaylist().getName());
-//
-//        // Solo mostramos el nombre de usuario si mostrarUsuario == true
-//        if (showUsers && event.get() != null) {
-//            holder.tvUserName.setText("Cliente: " + event.getEventUser().getName());
-//            holder.tvUserName.setVisibility(View.VISIBLE);
-//        } else {
-//            holder.tvUserName.setVisibility(View.GONE);
-//        }
-//    }
-//
-//}

@@ -5,31 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="164dp"
-        android:layout_height="105dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginBottom="250dp"
-        android:text="EVENTOS"
-        android:textAlignment="center"
-        android:textColor="@color/hurean_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/events_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="164dp"-->
+<!--        android:layout_height="105dp"-->
+<!--        android:layout_marginStart="200dp"-->
+<!--        android:layout_marginTop="200dp"-->
+<!--        android:layout_marginEnd="200dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:text="EVENTOS"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/hurean_dark"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/rv_events_list"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/events_list"
+        android:id="@+id/rv_events_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
