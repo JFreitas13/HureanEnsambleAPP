@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HureanEnsamble</string>
-    <string name="servicios">Servicios</string>
+    <string name="servicios">Serviços</string>
     <string name="email">Usuario</string>
     <string name="contrasena">Contraseña</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
@@ -18,13 +19,13 @@
     <string name="modify_song_button">Modificar</string>
     <string name="delete_song_button">Eliminar</string>
     <string name="ver_playlist">Ver Playlist</string>
-    <string name="are_you_sure_delete_song_message">¿Estás seguro que quieres eliminar la canción?</string>
+    <string name="are_you_sure_delete_song_message" >Tens a certeza que queres elimar a musica?</string>
     <string name="delete_song_title">Eliminar Canción</string>
-    <string name="nombre_usuario">Nombre Usuario</string>
+    <string name="nombre_usuario">Nombre Usuário</string>
     <string name="modificar_cancion">Modificar</string>
     <string name="are_you_sure_modify_song_message">Seguro que quieres modificar?</string>
     <string name="modify_song_title">Modificar Cancion</string>
-    <string name="nombre_del_usuario">Nombre del usuario</string>
+    <string name="nombre_del_usuario">Nombre del usuário</string>
     <string name="new_email">Email</string>
     <string name="new_contrasena">Contraseña</string>
     <string name="add_user">Add User</string>
@@ -33,7 +34,7 @@
         <item>user</item>
     </string-array>
     <string name="are_you_sure_delete_user_message">"¿Estás seguro que quieres eliminar el usuario?"</string>
-    <string name="delete_user_title">Eliminar Usuario</string>
+    <string name="delete_user_title">Eliminar Usuário</string>
     <string name="modificar_usuario">MODIFICAR USUARIO</string>
     <string name="are_you_sure_modify_user_message">¿Estás seguro que quieres modificar el usuario?</string>
     <string name="modify_user_title">Modificar usuario</string>
@@ -43,12 +44,12 @@
     <string name="delete_playlist_title">Eliminar Playlist</string>
     <string name="anadir_playlist">AÑADIR PLAYLIST</string>
     <string name="nombre_de_la_playlist">Nombre de la Playlist</string>
-    <string name="anadir_evento_title">AÑADIR EVENTO</string>
     <string name="imagen_anadir_evento">imagen_anadir_evento</string>
     <string name="lugar_del_evento">Lugar del evento</string>
     <string name="nombre_del_usuario_evento">Nombre del usuario</string>
     <string name="fecha_del_evento">Fecha del evento</string>
     <string name="playlist_asociada">Playlist asociada</string>
+    <string name="anadir_evento_title">AÑADIR EVENTO</string>
     <string name="are_you_sure_delete_event_message">¿Estás seguro que quieres eliminar el evento?</string>
     <string name="delete_event_title">Eliminar Evento</string>
 </resources>

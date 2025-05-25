@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="15dp"
+    android:background="#F1E9D6"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/event_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lugar_del_evento"
+        android:textColor="@color/hurean_dark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nombre_del_usuario_evento"
+        android:textColor="@color/black"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/event_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fecha_del_evento"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/event_playlist"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:clickable="true"
+        android:minHeight="48dp"
+        android:text="@string/playlist_asociada"
+        android:textColor="@color/purple_700"
+        android:textStyle="italic"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/modify_event_button"
+            style="@style/HureanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="Modificar evento"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_event_button"
+            style="@style/HureanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="Eliminar Evento"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>
+
