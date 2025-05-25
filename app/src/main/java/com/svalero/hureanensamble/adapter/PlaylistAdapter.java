@@ -51,7 +51,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
      * Metodo con el que Android va a inflar, va a crear cada estructura del layout donde irán los datos de cada evento.
      */
     @Override
-    public PlaylistAdapter.PlaylistHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PlaylistHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.playlist_item, parent, false); //el layout playlist_item de cada playlist
         return new PlaylistHolder(view); //Creamos un holder para cada una de las estructuras que infla el layout
@@ -162,8 +162,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
                         Playlist playlist = playlistsList.get(position);   // Obtenemos la canción a eliminar
                         presenter.deletePlaylist(playlist.getId(), position);           // Llamamos al presenter para que inicie el borrado en la API
 
-//                        playlistsList.remove(position);
-//                        notifyItemRemoved(position);
+
                     })
                     .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //boton del no
             AlertDialog dialog = builder.create();

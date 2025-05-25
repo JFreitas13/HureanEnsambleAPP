@@ -1,5 +1,6 @@
 package com.svalero.hureanensamble.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,19 +14,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.hureanensamble.R;
 import com.svalero.hureanensamble.Util.UserSession;
+import com.svalero.hureanensamble.contract.DeleteEventContract;
 import com.svalero.hureanensamble.domain.Event;
 import com.svalero.hureanensamble.domain.Playlist;
+import com.svalero.hureanensamble.presenter.DeleteEventPresenter;
 import com.svalero.hureanensamble.view.ModifyEventView;
 import com.svalero.hureanensamble.view.PlaylistDetailView;
 
 import java.util.List;
 
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder> {
+public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder> implements DeleteEventContract.View {
 
     private Context context; //activity en la que estamos
     private List<Event> eventList;
     private boolean showUserName;  // flag para mostrar o no el usuario
     private String userRol;
+    private DeleteEventPresenter presenter;
 
 
     /**
@@ -37,6 +41,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         this.context = context;
         this.eventList = eventList;
         this.showUserName = showUserName;
+        presenter = new DeleteEventPresenter(this);
 
         //Sesion de usuario para identificar el ROl
         UserSession session = new UserSession(context);
@@ -100,6 +105,25 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         return eventList.size();
     }
 
+    @Override
+    public void showError(String errorMessage) {
+        new AlertDialog.Builder(context)
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setPositiveButton("Aceptar", null)
+                .show();
+    }
+
+    //mensaje confirmando la eliminacion
+    @Override
+    public void showMessage(String message) {
+        new AlertDialog.Builder(context)
+                .setTitle("Información")
+                .setMessage(message)
+                .setPositiveButton("Aceptar", null)
+                .show();
+    }
+
 
     /**
      * 5) Holder son las estructuras que contienen los datos y los rellenan luego
@@ -139,6 +163,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
             }
 
             modifyEventButton.setOnClickListener(v -> modifyEvent(getAdapterPosition()));
+            deleteEventButton.setOnClickListener(v -> deleteEvent(getAdapterPosition()));
         }
 
         private void modifyEvent(int position) {
@@ -147,6 +172,24 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
             Intent intent = new Intent(context, ModifyEventView.class);
             intent.putExtra("event", event);
             context.startActivity(intent);
+        }
+
+        //metodo boton de eliminar evento
+        private void deleteEvent(int position) {
+            //Dialogo para confirmar que se quiere eliminar
+            AlertDialog.Builder builder = new AlertDialog.Builder(context); //le pasamos el contexto donde estamos
+            builder.setMessage(R.string.are_you_sure_delete_event_message)
+                    .setTitle(R.string.delete_event_title)
+                    .setPositiveButton("Si", (dialog, id) -> { //añadir boton de si
+                        Event event = eventList.get(position);   // Obtenemos la canción a eliminar
+                        presenter.deleteEvent(event.getId(), position);           // Llamamos al presenter para que inicie el borrado en la API
+
+                        eventList.remove(position);
+                        notifyItemRemoved(position);
+                    })
+                    .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //boton del no
+            AlertDialog dialog = builder.create();
+            dialog.show(); //sin esto no se muestra el dialogo
         }
     }
 }

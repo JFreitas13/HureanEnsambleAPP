@@ -49,4 +49,7 @@
     <string name="nombre_del_usuario_evento">Nombre del usuario</string>
     <string name="fecha_del_evento">Fecha del evento</string>
     <string name="playlist_asociada">Playlist asociada</string>
+    <string name="anadir_evento_title">AÑADIR EVENTO</string>
+    <string name="are_you_sure_delete_event_message">¿Estás seguro que quieres eliminar el evento?</string>
+    <string name="delete_event_title">Eliminar Evento</string>
 </resources>
