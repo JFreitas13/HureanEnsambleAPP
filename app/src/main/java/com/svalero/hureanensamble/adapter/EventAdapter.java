@@ -5,14 +5,17 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.hureanensamble.R;
+import com.svalero.hureanensamble.Util.UserSession;
 import com.svalero.hureanensamble.domain.Event;
 import com.svalero.hureanensamble.domain.Playlist;
+import com.svalero.hureanensamble.view.ModifyEventView;
 import com.svalero.hureanensamble.view.PlaylistDetailView;
 
 import java.util.List;
@@ -22,6 +25,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
     private Context context; //activity en la que estamos
     private List<Event> eventList;
     private boolean showUserName;  // flag para mostrar o no el usuario
+    private String userRol;
 
 
     /**
@@ -33,6 +37,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         this.context = context;
         this.eventList = eventList;
         this.showUserName = showUserName;
+
+        //Sesion de usuario para identificar el ROl
+        UserSession session = new UserSession(context);
+        userRol = session.getUserRol();
     }
 
     public Context getContext() {
@@ -102,6 +110,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         public TextView userName;
         public TextView eventDate;
         public TextView eventPlaylist;
+        public Button modifyEventButton;
+        public Button deleteEventButton;
 
         public View parentView; //vista padre - como el recyclerView
 
@@ -116,6 +126,27 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
             userName = view.findViewById(R.id.user_name);
             eventDate = view.findViewById(R.id.event_date);
             eventPlaylist = view.findViewById(R.id.event_playlist);
+            modifyEventButton = view.findViewById(R.id.modify_event_button);
+            deleteEventButton = view.findViewById(R.id.delete_event_button);
+
+            //control de visibilidad de botones según el rol
+            if ("admin".equalsIgnoreCase(userRol)) {
+                modifyEventButton.setVisibility(View.VISIBLE); //modificar
+                deleteEventButton.setVisibility(View.VISIBLE); //eliminar
+            } else {
+                modifyEventButton.setVisibility(View.GONE);
+                deleteEventButton.setVisibility(View.GONE);
+            }
+
+            modifyEventButton.setOnClickListener(v -> modifyEvent(getAdapterPosition()));
+        }
+
+        private void modifyEvent(int position) {
+            Event event = eventList.get(position);
+
+            Intent intent = new Intent(context, ModifyEventView.class);
+            intent.putExtra("event", event);
+            context.startActivity(intent);
         }
     }
 }

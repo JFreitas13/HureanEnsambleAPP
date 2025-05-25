@@ -5,31 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView"-->
-<!--        android:layout_width="164dp"-->
-<!--        android:layout_height="105dp"-->
-<!--        android:layout_marginStart="200dp"-->
-<!--        android:layout_marginTop="200dp"-->
-<!--        android:layout_marginEnd="200dp"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:text="EVENTOS"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textColor="@color/hurean_dark"-->
-<!--        android:textSize="24sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/rv_events_list"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_events_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="266dp"
+                android:layout_height="53dp"
+                android:layout_marginStart="73dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="73dp"
+                android:layout_marginBottom="1dp"
+                android:text="Eventos"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/hurean_dark"
+                android:textStyle="bold"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_events_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

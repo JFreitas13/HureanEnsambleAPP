@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,44 +19,51 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.svalero.hureanensamble.R;
 import com.svalero.hureanensamble.Util.UserSession;
-import com.svalero.hureanensamble.contract.AddEventContract;
+import com.svalero.hureanensamble.contract.ModifyEventContract;
 import com.svalero.hureanensamble.domain.Event;
 import com.svalero.hureanensamble.domain.Playlist;
 import com.svalero.hureanensamble.domain.User;
-import com.svalero.hureanensamble.presenter.AddEventPresenter;
+import com.svalero.hureanensamble.presenter.ModifyEventPresenter;
 
 import java.util.Calendar;
 import java.util.List;
 
-public class AddEventView extends AppCompatActivity implements AddEventContract.View {
+public class ModifyEventView extends AppCompatActivity implements ModifyEventContract.View {
 
-    // Referencias a las vistas
+    private long id;
+    private Event event;
+    private ModifyEventPresenter presenter;
+    private List<User> userList;
+    private List<Playlist> playlistsList;
     private EditText eventDateEditText;
     private EditText eventPlaceEditText;
     private Spinner userSpinner;
     private Spinner playlistSpinner;
-    private Button addButton;
-    private AddEventPresenter presenter;
-    private List<User> userList;
-    private List<Playlist> playlistsList;
+    private Button modifyEventButton;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_event_view);
+    protected void onCreate(Bundle saveInstanceState) {
+        super.onCreate(saveInstanceState);
+        setContentView(R.layout.activity_modify_event_view);
 
-        // Vinculación de vistas
-        eventDateEditText = findViewById(R.id.edit_event_date);
         eventPlaceEditText = findViewById(R.id.edit_event_place);
-       //paidCheckbox = findViewById(R.id.checkbox_paid);
+        eventDateEditText = findViewById(R.id.edit_event_date);
         userSpinner = findViewById(R.id.spinner_users);
         playlistSpinner = findViewById(R.id.spinner_playlists);
-        addButton = findViewById(R.id.btnModifyEvent);
 
-        // Inicializar presenter y cargar usuarios
-        presenter = new AddEventPresenter(this);
+        presenter = new ModifyEventPresenter(this);
         presenter.loadUsers(); //carga lista de usuarios desde el modelo
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            event = (Event) bundle.getSerializable("event"); // Asegúrate que implementa Serializable
+            if (event != null) {
+                id = event.getId();
+                eventPlaceEditText.setText(event.getPlace());
+                eventDateEditText.setText(event.getEventDate());
+            }
+        }
 
         // Selector de fecha con DatePicker
         eventDateEditText.setOnClickListener(v -> showDatePicker());
@@ -75,39 +81,24 @@ public class AddEventView extends AppCompatActivity implements AddEventContract.
                 // No hacer nada
             }
         });
+
     }
 
-    public void addButton(View view) {
-        // Validación de campos obligatorios
+    public void modifyEvent(View view) {
+
         String place = eventPlaceEditText.getText().toString().trim();
         String date = eventDateEditText.getText().toString().trim();
-//        boolean paid = paidCheckbox.isChecked();
         User selectedUser = (User) userSpinner.getSelectedItem();
+        Playlist selectedPlaylist = (Playlist)  playlistSpinner.getSelectedItem();
 
-//        if (place.isEmpty() || date.isEmpty()) {
-//            showError("Todos los campos son obligatorios.");
-//            return;
-//        }
-//
-//        if (userSpinner.getSelectedItem() == null || playlistSpinner.getSelectedItem() == null) {
-//            showError("Selecciona usuario y playlist.");
-//            return;
-//        }
-
-        // Crear evento y enviarlo al presenter
-        Event event = new Event();
-        event.setPlace(place);
-        event.setEventDate(date);
-        event.setEventUser((User) userSpinner.getSelectedItem());
-        event.setEventPlaylist((Playlist) playlistSpinner.getSelectedItem());
-
-        presenter.addEvent(event);
+        Event modifiedEvent = new Event(place, date, selectedUser, selectedPlaylist );
+        presenter.modifyEvent(id, modifiedEvent);
     }
+
 
     public void cancelButton(View view) {
         getOnBackPressedDispatcher().onBackPressed(); // Cierra la vista
     }
-
 
     // Muestra el selector de fecha
     private void showDatePicker() {
@@ -122,7 +113,6 @@ public class AddEventView extends AppCompatActivity implements AddEventContract.
         dialog.show();
     }
 
-    // Mostrar usuarios en el spinner
     @Override
     public void showUsers(List<User> users) {
         this.userList = users;
@@ -147,6 +137,7 @@ public class AddEventView extends AppCompatActivity implements AddEventContract.
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userSpinner.setAdapter(adapter);
+
     }
 
     // Mostrar playlists del usuario seleccionado
@@ -174,6 +165,7 @@ public class AddEventView extends AppCompatActivity implements AddEventContract.
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         playlistSpinner.setAdapter(adapter);
+
     }
 
     @Override
@@ -185,7 +177,6 @@ public class AddEventView extends AppCompatActivity implements AddEventContract.
 
     @Override
     public void showError(String error) {
-
 
     }
 
@@ -220,37 +211,4 @@ public class AddEventView extends AppCompatActivity implements AddEventContract.
         }
         return false;
     }
-
-//    // Mostrar mensaje de éxito
-//    @Override
-//    public void showMessage(String message) {
-//        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-//        finish(); // cerrar la vista tras éxito
-//    }
-//
-//    // Mostrar errores
-//    @Override
-//    public void showError(String error) {
-//        Toast.makeText(this, "Error: " + error, Toast.LENGTH_LONG).show();
-//    }
-//
-//    @Override
-//    public void showUsers(List<User> users) {
-//
-//    }
-//
-//    @Override
-//    public void showPlaylists(List<Playlist> playlists) {
-//
-//    }
-//
-//    @Override
-//    public void showMessage(String message) {
-//
-//    }
-//
-//    @Override
-//    public void showError(String error) {
-//
-//    }
 }

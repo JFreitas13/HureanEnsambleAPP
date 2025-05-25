@@ -18,8 +18,6 @@ public class ModifyPlaylistPresenter implements ModifyPlaylistContract.Presenter
         this.view = view;
     }
 
-
-
     @Override
     public void modifyPlaylist(long id, Playlist playlist) {
         model.modifyPlaylist(id, playlist, this);

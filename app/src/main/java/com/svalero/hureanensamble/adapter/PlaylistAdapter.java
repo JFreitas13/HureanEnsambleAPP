@@ -84,6 +84,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
                 .show();
     }
 
+    //mensaje confirmando la eliminacion
     @Override
     public void showMessage(String message) {
         new AlertDialog.Builder(context)
@@ -91,7 +92,6 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
                 .setMessage(message)
                 .setPositiveButton("Aceptar", null)
                 .show();
-
     }
 
     /**
@@ -115,10 +115,10 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
 
             playlistName = view.findViewById(R.id.playlist_name);
             seePlaylistDetailButton = view.findViewById(R.id.see_playlist_button);
-            modifyPlaylistButton = view.findViewById(R.id.modify_playlist_button);
-            deletePlaylistButton = view.findViewById(R.id.delete_playlist_button);
+            modifyPlaylistButton = view.findViewById(R.id.modify_event_button);
+            deletePlaylistButton = view.findViewById(R.id.delete_event_button);
 
-            //pulsando estos botones llamamos al metodo correspondiente
+
             //control de visibilidad de botones según el rol
             if ("admin".equalsIgnoreCase(userRol)) {
                 modifyPlaylistButton.setVisibility(View.VISIBLE); //modificar
@@ -128,6 +128,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
                 deletePlaylistButton.setVisibility(View.GONE);
             }
 
+            //pulsando estos botones llamamos al metodo correspondiente
             seePlaylistDetailButton.setOnClickListener(v -> seePlaylistDetail(getAdapterPosition()));
             modifyPlaylistButton.setOnClickListener(v -> modifyPlaylist(getAdapterPosition()));
             deletePlaylistButton.setOnClickListener(v -> deletePlaylist(getAdapterPosition()));

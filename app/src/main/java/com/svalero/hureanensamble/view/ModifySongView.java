@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,7 +29,7 @@ public class ModifySongView extends AppCompatActivity implements ModifySongContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_song_view);
 
-        noticeId();
+        //noticeId();
 
         Bundle bundle = getIntent().getExtras();
         song = (Song) bundle.getSerializable("song");
@@ -48,14 +49,14 @@ public class ModifySongView extends AppCompatActivity implements ModifySongContr
         String url = etUrl.getText().toString();
 
         Song modifiedSong = new Song(name, url);
-        presenter.modifySong(id,modifiedSong);//metodo modificar
+        presenter.modifySong(id, modifiedSong);//metodo modificar
 
         finish(); //para regresar al listado una vez se confirma la modificación.
     }
 
     //boton cancelar y volver atras
     public void cancelModifyButton(View view) {
-        getOnBackPressedDispatcher();
+        getOnBackPressedDispatcher().onBackPressed();
     }
 
     //datos nuevos
@@ -91,6 +92,8 @@ public class ModifySongView extends AppCompatActivity implements ModifySongContr
 
     @Override
     public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        finish(); //cerramos despues de recibir ok
 
     }
 

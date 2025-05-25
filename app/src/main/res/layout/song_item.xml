@@ -52,11 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/modify_song_button"
-            android:textColor="@color/background_light"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:backgroundTint="@color/hurean_dark" />
+            android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/delete_song_button"

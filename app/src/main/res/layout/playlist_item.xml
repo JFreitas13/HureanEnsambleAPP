@@ -29,7 +29,7 @@
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/modify_playlist_button"
+            android:id="@+id/modify_event_button"
             style="@style/HureanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/delete_playlist_button"
+            android:id="@+id/delete_event_button"
             style="@style/HureanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

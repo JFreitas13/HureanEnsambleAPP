@@ -30,7 +30,7 @@ public class ModifyUserView extends AppCompatActivity implements ModifyUserContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_user_view);
 
-        noticeId();
+        //noticeId();
 
         Bundle bundle = getIntent().getExtras();
         user = (User) bundle.getSerializable("user");

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,7 +46,6 @@ public class AddSongView extends AppCompatActivity implements AddSongContract.Vi
         Song song = new Song(name, url);
         presenter.addSong(song);
 
-        finish();
     }
 
     //boton CANCELAR
@@ -60,6 +60,8 @@ public class AddSongView extends AppCompatActivity implements AddSongContract.Vi
 
     @Override
     public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        finish();
 
     }
 

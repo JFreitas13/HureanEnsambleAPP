@@ -24,7 +24,7 @@
         android:layout_marginTop="260dp"
         android:layout_marginEnd="73dp"
         android:layout_marginBottom="1dp"
-        android:text="@string/anadir_evento_title"
+        android:text="MODIFICAR EVENTO"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/hurean_dark"
@@ -81,8 +81,8 @@
             style="@style/HureanButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="addButton"
-            android:text="Crear Evento" />
+            android:onClick="modifyEvent"
+            android:text="Modificar Evento" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancelar"

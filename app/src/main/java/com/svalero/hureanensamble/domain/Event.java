@@ -11,7 +11,6 @@ public class Event implements Serializable {
     private String eventDate;
     private String place;
     private boolean paid;
-
     private Playlist eventPlaylist;
     private User eventUser;
 
@@ -20,6 +19,13 @@ public class Event implements Serializable {
         this.eventDate = eventDate;
         this.place = place;
         this.paid = paid;
+    }
+
+    public Event(String place, String eventDate, User eventUser, Playlist eventPlaylist) {
+        this.eventDate = eventDate;
+        this.place = place;
+        this.eventUser = eventUser;
+        this.eventPlaylist = eventPlaylist;
     }
 
     public Event() {

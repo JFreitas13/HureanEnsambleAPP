@@ -34,18 +34,6 @@ public class ModifyPlaylistView extends AppCompatActivity implements ModifyPlayl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_modify_playlist_view);
-//
-//        noticeId();
-//
-//        Bundle bundle = getIntent().getExtras();
-//        playlist = (Playlist) bundle.getSerializable("playlist");
-//        id = playlist.getId();
-//
-//        fillData(playlist);
-//
-//        presenter = new ModifyPlaylistPresenter(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_playlist_view);
 
@@ -65,7 +53,7 @@ public class ModifyPlaylistView extends AppCompatActivity implements ModifyPlayl
 
         presenter.loadUsers();
 
-        noticeId();
+        //noticeId();
     }
 
     public void modifyButton(View view) {
