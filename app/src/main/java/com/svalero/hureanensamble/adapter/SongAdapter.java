@@ -105,7 +105,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
         }
     }
 
-
     /**
      * Metodo que estamos obligados a hacer para que devuelva el número de elementos y android pueda hacer sus calculos y pintar en base a esos calculos
      */
@@ -130,12 +129,21 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
 
     @Override
     public void showError(String errorMessage) {
+        new AlertDialog.Builder(context)
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setPositiveButton("Aceptar", null)
+                .show();
 
     }
 
     @Override
     public void showMessage(String message) {
-
+        new AlertDialog.Builder(context)
+                .setTitle("Información")
+                .setMessage(message)
+                .setPositiveButton("Aceptar", null)
+                .show();
     }
 
     /**
@@ -193,7 +201,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             deleteSongButton.setOnClickListener(v -> deleteSong(getAdapterPosition()));
             addSongToPlaylistButton.setOnClickListener(v -> addSongToPlaylist(getAdapterPosition()));
             deleteSongFromPlaylistButton.setOnClickListener(v -> deleteSongFromPlaylist(getAdapterPosition()));
-
         }
 
 
@@ -206,6 +213,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             context.startActivity(intent);
         }
 
+        //metodo boton eliminar
         private void deleteSong(int position) {
             //Dialogo para confirmar que se quiere eliminar
             AlertDialog.Builder builder = new AlertDialog.Builder(context); //le pasamos el contexto donde estamos
@@ -224,8 +232,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> im
             dialog.show(); //sin esto no se muestra el dialogo
         }
 
-
-        //metodo boton modificar
+        //metodo boton añadir cancion a un aplaylist
         private void addSongToPlaylist(int position) {
             Song song = filteredSongList.get(position);
 

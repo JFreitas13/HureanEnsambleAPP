@@ -56,7 +56,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         public TextView productName;
         public TextView productDescription;
         public EditText productPrice;
-
         public View parentView;
 
 
