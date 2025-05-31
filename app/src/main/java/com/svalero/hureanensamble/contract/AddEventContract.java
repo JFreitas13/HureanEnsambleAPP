@@ -8,10 +8,13 @@ import java.util.List;
 
 public interface AddEventContract {
 
+    /**
+     * Que necesita el model para solicitar a la API
+     */
     interface Model {
         interface OnLoadUsersListener {
-            void onLoadUsersSuccess(List<User> users);
-            void onLoadUsersError(String message);
+            void onLoadUsersSuccess(List<User> users); //devuelve lista de usuarios
+            void onLoadUsersError(String message); //para devolver un posible error
         }
 
         interface OnLoadPlaylistsListener {
@@ -29,6 +32,9 @@ public interface AddEventContract {
         void addEvent(Event event, OnAddEventListener listener);
     }
 
+    /**
+     * Que recibe la view después de solicitarle al presenter
+     */
     interface View {
         void showUsers(List<User> users);
         void showPlaylists(List<Playlist> playlists);
